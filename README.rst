@@ -2,7 +2,7 @@
 e-lims
 ======
 
-lLaboratory Information Management System design for electronics .
+Laboratory Information Management System design for electronics .
 
 * Free software: MIT license
 
