@@ -1,0 +1,18 @@
+{
+    "recommendations": [
+        "piotrpalarz.vscode-gitignore-generator",
+        "aaron-bond.better-comments",
+        "njpwerner.autodocstring",
+        "vivaxy.vscode-conventional-commits",
+        "bungcip.better-toml",
+        "github.copilot",
+        "github.vscode-pull-request-github",
+        "github.github-vscode-theme",
+        "codezombiech.gitignore",
+        "eamodio.gitlens",
+        "ms-python.vscode-pylance",
+        "ms-python.python",
+        "trond-snekvik.simple-rst",
+        "lextudio.restructuredtext"
+    ]
+}
