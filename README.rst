@@ -4,10 +4,11 @@ e-lims
 
 Laboratory Information Management System design for electronics .
 
+* Repository: 
 * Free software: MIT license
 
-Features
---------
+Tools
+=====
 
 * Packaging and dependency management: Poetry_
 * Formatter: Black_
@@ -15,8 +16,15 @@ Features
 * Type checker: Mypy_
 * Tests framework: Pytest_
 * Automate and standardize testing: Tox_
-* Documentation: Sphinx_
 * Version: Bump2Version_
+* Data base : `Maria DB`_ with `Sqlalchemy`_ ORM
+* Data validation: `Pydantic`_
+* Data manipulations: `Pandas_`, `Numpy`_ and `Scipy`_
+* Data visualizations: `Plotly`_ 
+* Diagrams visualizations: `Mermaid`_
+* Documentation: `Sphinx`_
+* Application framework: `Dash`_
+
 
 .. _Poetry: https://python-poetry.org/
 .. _Black: https://black.readthedocs.io/en/stable/
@@ -24,5 +32,14 @@ Features
 .. _Mypy: http://mypy-lang.org/
 .. _Pytest: https://docs.pytest.org/en/stable/
 .. _Tox: http://testrun.org/tox/
-.. _Sphinx: http://sphinx-doc.org/
 .. _Bump2Version: https://github.com/c4urself/bump2version
+.. _`Maria DB`: https://mariadb.org/
+.. _`Sqlalchemy`: https://www.sqlalchemy.org/
+.. _`Pydantic`: https://pydantic-docs.helpmanual.io/
+.. _`Pandas`: https://pandas.pydata.org/
+.. _`Numpy`: https://numpy.org/
+.. _`Scipy`: https://scipy.org/
+.. _`Mermaid`: https://mermaid-js.github.io/mermaid/#/
+.. _`Plotly`: https://plotly.com/dash/
+.. _Sphinx: http://sphinx-doc.org/
+.. _`Dash`: https://plotly.com/dash/
