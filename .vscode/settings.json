@@ -19,4 +19,5 @@
         "titleBar.activeBackground": "#0e1088",
         "titleBar.activeForeground": "#EBFEF8"
     },
+    "esbonio.sphinx.confDir": "",
 }
