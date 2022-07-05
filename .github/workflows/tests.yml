@@ -3,14 +3,15 @@ on:  push
 
 jobs:
   test:
-    name: Test on node
+    name: build
     runs-on: ubuntu-latest
     steps:
-    - name: Install and configure poetry
-      run: |
-        curl -sSL https://raw.githubusercontent.com/python-poetry/poetry/master/get-poetry.py | python -
-        virtualenvs.create = true
-        
-    - name: Install package dependacy
-      run: |
-        poetry install -E docs -E tests -vvv
+    - uses: actions/checkout@v3
+    - name: Install poetry
+      run: pipx install poetry
+    - uses: actions/setup-python@v4
+      with:
+        python-version: '3.9'
+        cache: 'poetry'
+    - run: poetry install
+    - run: poetry run pytest
