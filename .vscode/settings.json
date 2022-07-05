@@ -1,0 +1,23 @@
+{
+    "python.defaultInterpreterPath": "${workspaceFolder}/.venv/Scripts/python.exe",
+    "editor.formatOnSave": true,
+    "python.formatting.provider": "black",
+    "python.formatting.blackPath": "${workspaceFolder}/.tox/linters/Scripts/black.exe",
+    "python.linting.enabled": true,
+    "python.linting.mypyEnabled": true,
+    "python.linting.mypyPath": "${workspaceFolder}/.tox/linters/Scripts/mypy.exe",
+    "python.linting.flake8Enabled": true,
+    "python.linting.flake8Path": "${workspaceFolder}/.tox/linters/Scripts/flake8.exe",
+    "python.testing.pytestEnabled": true,
+    "python.testing.pytestPath": "${workspaceFolder}/.tox/linters/Scripts/pytest.exe",
+    "files.exclude": {
+        "**/*.pyc": true,
+        "**/__pycache__": true
+    },
+    "workbench.colorCustomizations": {
+        "activityBar.background": "#0e1088",
+        "titleBar.activeBackground": "#0e1088",
+        "titleBar.activeForeground": "#EBFEF8"
+    },
+    "esbonio.sphinx.confDir": "",
+}

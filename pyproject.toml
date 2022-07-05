@@ -1,0 +1,43 @@
+[tool.poetry]
+name = "e_lims"
+version = "0.1.0"
+description = "Python Boilerplate contains all the boilerplate you need to create a Python package with Poetry."
+readme = "README.rst"
+authors = ["Fabien Meyer <fabien-meyer@outlook.com>"]
+license = "MIT"
+include = ["e_lims/py.typed"]
+
+[tool.poetry.dependencies]
+python = "^3.8"
+typing_extensions = "^3.10.0.2"
+dash = "^2.5.1"
+dash-daq = "^0.5.0"
+gunicorn = "^20.1.0"
+mariadb = "^1.1.2"
+pandas = "^1.4.2"
+plotly = "^5.8.2"
+SQLAlchemy = "^1.4.39"
+
+coverage = {version = "^6.4.1", optional = true}
+pytest = {version = "^6.2.5", optional = true}
+pytest-cookies = {version = "^0.6.1", optional = true}
+
+pylint = {version = "^2.14.1", optional = true}
+Sphinx = {version = "^4.5.0", optional = true}
+sphinx-autodoc-typehints = {version = "^1.18.3", optional = true}
+sphinxcontrib-mermaid = {version = "^0.7.1", optional = true}
+sphinx-rtd-theme = {version = "^1.0.0", optional = true}
+bandit = "^1.7.4"
+
+[tool.poetry.dev-dependencies]
+bump2version = "^1.0.1"
+cookiecutter = "^1.7.3"
+tox = "^3.25.0"
+
+[tool.poetry.extras]
+doc = ["pylint", "Sphinx", "sphinx-autodoc-typehints", "sphinxcontrib-mermaid", "sphinx-rtd-theme"]
+tests = ["coverage", "pytest", "pytest-cookies"]
+
+[build-system]
+requires = ["poetry_core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
