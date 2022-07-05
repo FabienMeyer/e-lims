@@ -12,6 +12,7 @@ Tools
 
 * Packaging and dependency management: Poetry_
 * Formatter: Black_
+* Security: Bandit_
 * Style checker: Flake8_
 * Type checker: Mypy_
 * Tests framework: Pytest_
@@ -28,6 +29,7 @@ Tools
 
 .. _Poetry: https://python-poetry.org/
 .. _Black: https://black.readthedocs.io/en/stable/
+.. _`Bandit`: https://bandit.readthedocs.io/en/latest/
 .. _Flake8: https://flake8.pycqa.org/en/latest/
 .. _Mypy: http://mypy-lang.org/
 .. _Pytest: https://docs.pytest.org/en/stable/

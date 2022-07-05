@@ -1,0 +1,24 @@
+name: tests
+on:  push
+
+jobs:
+  tests:
+    name: test ${{ matrix.py }} - ${{ matrix.os }}
+    runs-on: ${{ matrix.os }}-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        os:
+          - Ubuntu
+          - Windows
+          - MacOs
+        py:
+          - "3.11"
+          - "3.10
+          - "3.9"
+          - "3.8"
+    steps:
+      - name: Setup python for test ${{ matrix.py }}
+        uses: actions/setup-python@v2
+        with:
+          python-version: ${{ matrix.py }}
