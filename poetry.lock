@@ -456,14 +456,6 @@ optional = true
 python-versions = ">=3.6"
 
 [[package]]
-name = "mariadb"
-version = "1.1.2"
-description = "Python MariaDB extension"
-category = "main"
-optional = false
-python-versions = ">=3.7"
-
-[[package]]
 name = "markupsafe"
 version = "2.1.1"
 description = "Safely add untrusted strings to HTML/XML markup."
@@ -1062,7 +1054,7 @@ tests = ["coverage", "pytest", "pytest-cookies"]
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.8"
-content-hash = "2c2ea5c3fc9278a9ecc3fcada38e28380feaf5549ccf0d27b3ac17edab669d17"
+content-hash = "b6e80870815216d9f3033ee5c5d66782bc749878413ada64d677e235803ecb32"
 
 [metadata.files]
 alabaster = [
@@ -1414,17 +1406,6 @@ lazy-object-proxy = [
     {file = "lazy_object_proxy-1.7.1-cp39-cp39-win32.whl", hash = "sha256:2130db8ed69a48a3440103d4a520b89d8a9405f1b06e2cc81640509e8bf6548f"},
     {file = "lazy_object_proxy-1.7.1-cp39-cp39-win_amd64.whl", hash = "sha256:677ea950bef409b47e51e733283544ac3d660b709cfce7b187f5ace137960d61"},
     {file = "lazy_object_proxy-1.7.1-pp37.pp38-none-any.whl", hash = "sha256:d66906d5785da8e0be7360912e99c9188b70f52c422f9fc18223347235691a84"},
-]
-mariadb = [
-    {file = "mariadb-1.1.2-cp310-cp310-win32.whl", hash = "sha256:a4b3bdc4e152bf85841ebaaa5c4818b617a0249330a10d22a3309878de97f52b"},
-    {file = "mariadb-1.1.2-cp310-cp310-win_amd64.whl", hash = "sha256:8b9257abe2bc0a0ee390ab1875bd8bc83129e320bcd53bdeb0f25187be39de09"},
-    {file = "mariadb-1.1.2-cp37-cp37m-win32.whl", hash = "sha256:10a333dbf09092dc4a434b8c7603cf8969ef168f8bd0efeb5355ca606e2396cb"},
-    {file = "mariadb-1.1.2-cp37-cp37m-win_amd64.whl", hash = "sha256:e8833bc13af5f31836841868628ec9945d6f6062a503f5a2c7a8f6722cc30786"},
-    {file = "mariadb-1.1.2-cp38-cp38-win32.whl", hash = "sha256:412017b781887f824f4dc24f83b3f60062ebc9a142d6618fc135e6822a88b6a3"},
-    {file = "mariadb-1.1.2-cp38-cp38-win_amd64.whl", hash = "sha256:6c01c3820c05bb4dd237a99ebb2a770b49446d2698cb29f4323812ec0aeb37de"},
-    {file = "mariadb-1.1.2-cp39-cp39-win32.whl", hash = "sha256:33f9cf85972493f014a99786da077de60e6fb09ea60eaf22935c11fe3140cd05"},
-    {file = "mariadb-1.1.2-cp39-cp39-win_amd64.whl", hash = "sha256:88f9b5f33a7be4ca02d3210e86ac9466426d3e83dbd0bf4bae2aa82374d34129"},
-    {file = "mariadb-1.1.2.tar.gz", hash = "sha256:e1ed6b9bbd3051a9666f9b882f6f71b26f16c2acabcbd0db6c5cb5fff5d2100a"},
 ]
 markupsafe = [
     {file = "MarkupSafe-2.1.1-cp310-cp310-macosx_10_9_universal2.whl", hash = "sha256:86b1f75c4e7c2ac2ccdaec2b9022845dbb81880ca318bb7a0a01fbf7813e3812"},
