@@ -49,8 +49,11 @@ jobs:
       - name: Run tests with py38
         run: |
           source .venv/bin/activate
+          if: ${{ matrix.python-version }} != '3.8'
           poetry run tox -e py38
+          if: ${{ matrix.python-version }} != '3.9
           poetry run tox -e py39
+          if: ${{ matrix.python-version }} != '3.10'
           poetry run tox -e py310
 
       - name: Run docs
