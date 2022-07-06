@@ -3,7 +3,7 @@ name: push
 on: push
 
 jobs:
-  push:
+  build:
     runs-on: ubuntu-latest
     steps:
       #----------------------------------------------
@@ -15,50 +15,50 @@ jobs:
         id: setup-python
         uses: actions/setup-python@v2
         with:
-          python-version: ['3.10']
+          python-version: ["3.7", "3.8", "3.9", "3.10", "3.11"]
       #----------------------------------------------
       #  -----  install & configure poetry  -----
       #----------------------------------------------
-      - name: Install Poetry
-        uses: snok/install-poetry@v1
-        with:
-          virtualenvs-create: true
-          virtualenvs-in-project: true
-          installer-parallel: true
-      #----------------------------------------------
-      #       load cached venv if cache exists
-      #----------------------------------------------
-      - name: Load cached venv
-        id: cached-poetry-dependencies
-        uses: actions/cache@v2
-        with:
-          path: .venv
-          key: venv-${{ runner.os }}-${{ steps.setup-python.outputs.python-version }}-${{ hashFiles('**/poetry.lock') }}
-      #----------------------------------------------
-      # install dependencies if cache does not exist
-      #----------------------------------------------
-      - name: Install dependencies
-        if: steps.cached-poetry-dependencies.outputs.cache-hit != 'true'
-        run: poetry install -E tests -E docs --no-interaction --no-root
-      #----------------------------------------------
-      # install your root project, if required
-      #----------------------------------------------
-      - name: Install library
-        run: poetry install  -E tests -E docs --no-interaction
-      #----------------------------------------------
-      #              run test suite
-      #----------------------------------------------
-      - name: Run linters with bandit, black, flake8, mypy and doc8
-        run: |
-          source .venv/bin/activate
-          poetry run tox -e linters
-      - name: Run tests with py38
-        run: |
-          source .venv/bin/activate
-          poetry run tox -e py38
-          poetry run tox -e py39
-          poetry run tox -e py310
-      - name: Run docs
-        run: |
-          source .venv/bin/activate
-          poetry run tox -e docs
+      # - name: Install Poetry
+      #   uses: snok/install-poetry@v1
+      #   with:
+      #     virtualenvs-create: true
+      #     virtualenvs-in-project: true
+      #     installer-parallel: true
+      # #----------------------------------------------
+      # #       load cached venv if cache exists
+      # #----------------------------------------------
+      # - name: Load cached venv
+      #   id: cached-poetry-dependencies
+      #   uses: actions/cache@v2
+      #   with:
+      #     path: .venv
+      #     key: venv-${{ runner.os }}-${{ steps.setup-python.outputs.python-version }}-${{ hashFiles('**/poetry.lock') }}
+      # #----------------------------------------------
+      # # install dependencies if cache does not exist
+      # #----------------------------------------------
+      # - name: Install dependencies
+      #   if: steps.cached-poetry-dependencies.outputs.cache-hit != 'true'
+      #   run: poetry install -E tests -E docs --no-interaction --no-root
+      # #----------------------------------------------
+      # # install your root project, if required
+      # #----------------------------------------------
+      # - name: Install library
+      #   run: poetry install  -E tests -E docs --no-interaction
+      # #----------------------------------------------
+      # #              run test suite
+      # #----------------------------------------------
+      # - name: Run linters with bandit, black, flake8, mypy and doc8
+      #   run: |
+      #     source .venv/bin/activate
+      #     poetry run tox -e linters
+      # - name: Run tests with py38
+      #   run: |
+      #     source .venv/bin/activate
+      #     poetry run tox -e py38
+      #     poetry run tox -e py39
+      #     poetry run tox -e py310
+      # - name: Run docs
+      #   run: |
+      #     source .venv/bin/activate
+      #     poetry run tox -e docs
