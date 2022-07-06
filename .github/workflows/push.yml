@@ -15,7 +15,7 @@ jobs:
         id: setup-python
         uses: actions/setup-python@v2
         with:
-          python-version: 3.9
+          python-version: 3.11
       #----------------------------------------------
       #  -----  install & configure poetry  -----
       #----------------------------------------------
@@ -52,7 +52,7 @@ jobs:
         run: |
           source .venv/bin/activate
           poetry run tox -e linters
-      - name: Run tests with py38, py39, py310
+      - name: Run tests with py38
         run: |
           source .venv/bin/activate
           poetry run tox -e py38
