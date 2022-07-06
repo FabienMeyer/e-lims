@@ -35,7 +35,7 @@ cookiecutter = "^1.7.3"
 tox = "^3.25.0"
 
 [tool.poetry.extras]
-doc = ["pylint", "Sphinx", "sphinx-autodoc-typehints", "sphinxcontrib-mermaid", "sphinx-rtd-theme"]
+docs = ["pylint", "Sphinx", "sphinx-autodoc-typehints", "sphinxcontrib-mermaid", "sphinx-rtd-theme"]
 tests = ["coverage", "pytest", "pytest-cookies"]
 
 [build-system]

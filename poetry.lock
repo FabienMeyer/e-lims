@@ -990,13 +990,13 @@ docs = ["sphinx", "jaraco.packaging (>=9)", "rst.linker (>=1.9)"]
 testing = ["pytest (>=6)", "pytest-checkdocs (>=2.4)", "pytest-flake8", "pytest-cov", "pytest-enabler (>=1.0.1)", "jaraco.itertools", "func-timeout", "pytest-black (>=0.3.7)", "pytest-mypy (>=0.9.1)"]
 
 [extras]
-doc = ["pylint", "Sphinx", "sphinx-autodoc-typehints", "sphinxcontrib-mermaid", "sphinx-rtd-theme"]
+docs = ["pylint", "Sphinx", "sphinx-autodoc-typehints", "sphinxcontrib-mermaid", "sphinx-rtd-theme"]
 tests = ["coverage", "pytest", "pytest-cookies"]
 
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.8"
-content-hash = "d8a67a25de891190e1e93ac96f552e5f829df04ce7dc07a18b93e0678cbd6269"
+content-hash = "c8cfa5584065cc6137d122a5554c116da2b0598c9ba77fe241f6898af2a5034d"
 
 [metadata.files]
 alabaster = [
