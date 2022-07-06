@@ -14,11 +14,9 @@ jobs:
       #----------------------------------------------
       #       check-out repo and set-up python
       #----------------------------------------------
-      - name: check-out repo and set-up python
       - uses: actions/checkout@v3
-      - uses: actions/setup-python@v4
-        id: setup-python
-        uses: actions/setup-python@v2
+      - name: Set up Python ${{ matrix.python-version }}
+        uses: actions/setup-python@v4
         with:
           python-version: ${{ matrix.python-version }}
       # ----------------------------------------------
