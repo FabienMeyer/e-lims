@@ -48,17 +48,17 @@ jobs:
       #----------------------------------------------
       #              run test suite
       #----------------------------------------------
-      - name: linters
+      - name: Run linters with bandit, black, flake8, mypy and doc8
         run: |
           source .venv/bin/activate
           poetry run tox -e linters
-      - name: tests
+      - name: Run tests with py38, py39, py310
         run: |
           source .venv/bin/activate
           poetry run tox -e py38
           poetry run tox -e py39
           poetry run tox -e py310
-      - name: docs
+      - name: Run docs
         run: |
           source .venv/bin/activate
           poetry run tox -e docs
