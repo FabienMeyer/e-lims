@@ -41,6 +41,7 @@ jobs:
   linters:
     needs:
       - build
+    runs-on: ubuntu-latest
     steps:
       - name: Run linters with bandit, black, flake8, mypy and doc8
         run: |
