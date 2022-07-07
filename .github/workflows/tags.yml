@@ -3,7 +3,7 @@ name: tags
 on: tags
 
 jobs:
-  push:
+  build:
     runs-on: ubuntu-latest
     steps:
       #----------------------------------------------
@@ -48,3 +48,19 @@ jobs:
       #----------------------------------------------
       #              run test suite
       #----------------------------------------------
+
+  linters:
+    needs:
+      - build
+
+  tests:
+    needs:
+      - build
+
+  documentations:
+    needs:
+      - build
+
+  deploys:
+    needs:
+      - build

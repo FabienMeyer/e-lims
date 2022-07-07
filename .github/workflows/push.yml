@@ -1,10 +1,7 @@
-name: push
-
 on: push
 
 jobs:
   build:
-
     runs-on: ubuntu-latest
     strategy:
       matrix:
@@ -41,22 +38,11 @@ jobs:
       - name: Install library
         run: poetry install  -E tests -E docs --no-interaction
 
+  linters:
+    needs:
+      - build
+    steps:
       - name: Run linters with bandit, black, flake8, mypy and doc8
         run: |
           source .venv/bin/activate
           poetry run tox -e linters
-
-      - name: Run tests with py38
-        run: |
-          source .venv/bin/activate
-          if: ${{ matrix.python-version }} != '3.8'
-          poetry run tox -e py38
-          if: ${{ matrix.python-version }} != '3.9
-          poetry run tox -e py39
-          if: ${{ matrix.python-version }} != '3.10'
-          poetry run tox -e py310
-
-      - name: Run docs
-        run: |
-          source .venv/bin/activate
-          poetry run tox -e docs
