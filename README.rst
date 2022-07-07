@@ -4,6 +4,7 @@ e-lims
 
 Laboratory Information Management System design for electronics .
 
+* Github templates
 * Repository: 
 * Free software: MIT license
 
