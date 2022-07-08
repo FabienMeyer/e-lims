@@ -43,7 +43,7 @@ sphinx-rtd-theme = {version = "^1.0.0", optional = true}
 
 [tool.poetry.dev-dependencies]
 bump2version = "^1.0.1"
-cookiecutter = "^1.7.3"
+cookiecutter = "^2.1.1"
 pre-commit = "^2.19.0"
 tox = "^3.25.0"
 commitizen = "^2.28.0"
