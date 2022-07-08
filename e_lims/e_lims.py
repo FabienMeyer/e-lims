@@ -3,7 +3,7 @@
 
 
 def hello(name):
-    # type: (str) -> int
+    # type: (str) -> str
     """Say hello.
 
     >>> hello('e-lims')
