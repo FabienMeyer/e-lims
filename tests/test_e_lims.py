@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-"""`e_lims` tests."""
+"""e_lims tests."""
 
 import pytest
 
