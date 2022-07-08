@@ -1,12 +1,8 @@
-.. image:: https://img.shields.io/badge/pre--commit-enabled-brightgreen?logo=pre-commit&logoColor=white
-   :target: https://github.com/pre-commit/pre-commit
-   :alt: pre-commit
-
 ======
 e-lims
 ======
 
-Laboratory Information Management System design for electronics .
+Laboratory Information Management System design for electronics.
 
 * Github templates
 * Repository:
