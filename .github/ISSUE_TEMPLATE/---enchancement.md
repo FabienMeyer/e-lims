@@ -1,9 +1,9 @@
 ---
-name: "\U0001F381 Feature Request"
-about: Do you have ideas for new features and improvements?
+name: "\U0001F381 Enchancement Request"
+about: Do you have ideas for new enchancement and improvements?
 title: ''
-labels: Feature, Triage
-assignees: ''
+labels: enchancement
+assignees: ""
 
 ---
 
