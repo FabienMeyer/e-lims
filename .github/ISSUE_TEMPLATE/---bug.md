@@ -1,33 +1,34 @@
 ---
 name: "\U0001F41E Bug Report"
-about: Did you find a bug?
+about: Create a report to help us improve
 title: ''
-labels: Bug, Triage
+labels: Bug
 assignees: ''
-
 ---
 
-<!--
-  Hi there! Thank you for discovering and submitting an issue.
+**Describe the bug**
 
-  Before you submit this; let's make sure of a few things.
-  Please make sure the following boxes are ticked if they are correct.
-  If not, please try and fulfill these first.
--->
+A clear and concise description of what the bug is.
 
-<!-- Checked checkbox should look like this: [x] -->
-- [ ] I am on the [latest](https://github.com/python-poetry/poetry/releases/latest) Poetry version.
-- [ ] I have searched the [issues](https://github.com/python-poetry/poetry/issues) of this repo and believe that this is not a duplicate.
-- [ ] If an exception occurs when executing a command, I executed it again in debug mode (`-vvv` option).
+**To Reproduce**
+Steps to reproduce the behavior:
+1. Go to '...'
+2. Click on '....'
+3. Scroll down to '....'
+4. See error
 
-<!--
-  Once those are done, if you're able to fill in the following list with your information,
-  it'd be very helpful to whoever handles the issue.
--->
+**Expected behavior**
 
-- **OS version and name**: <!-- Replace with version + name -->
-- **Poetry version**: <!-- Replace with version -->
-- **Link of a [Gist](https://gist.github.com/) with the contents of your pyproject.toml file**: <!-- Gist Link Here -->
+A clear and concise description of what you expected to happen.
 
-## Issue
-<!-- Now feel free to write your issue, but please be descriptive! Thanks again 🙌 ❤️ -->
+**Screenshots**
+
+If applicable, add screenshots to help explain your problem.
+
+**Desktop (please complete the following information):**
+
+ - OS: [e.g. iOS]
+
+**Additional context**
+
+Add any other context about the problem here.
