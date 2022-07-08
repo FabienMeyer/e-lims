@@ -1,8 +1,7 @@
-
-[![pre-commit.ci status](https://results.pre-commit.ci/badge/github/pre-commit/pre-commit-hooks/main.svg)](https://results.pre-commit.ci/latest/github/pre-commit/pre-commit-hooks/main)
 ======
 e-lims
 ======
+|build-status| |docs| |coverage|
 
 Laboratory Information Management System design for electronics.
 
@@ -29,6 +28,19 @@ Tools
 * Documentation: `Sphinx`_
 * Application framework: `Dash`_
 
+.. |build-status| image:: https://circleci.com/gh/readthedocs/readthedocs.org.svg?style=svg
+    :alt: build status
+    :target: https://circleci.com/gh/readthedocs/readthedocs.org
+
+.. |docs| image:: https://readthedocs.org/projects/docs/badge/?version=latest
+    :alt: Documentation Status
+    :scale: 100%
+    :target: https://docs.readthedocs.io/en/latest/?badge=latest
+
+.. |coverage| image:: https://codecov.io/gh/readthedocs/readthedocs.org/branch/main/graph/badge.svg
+    :alt: Test coverage
+    :scale: 100%
+    :target: https://codecov.io/gh/readthedocs/readthedocs.org
 
 .. _Poetry: https://python-poetry.org/
 .. _Black: https://black.readthedocs.io/en/stable/
