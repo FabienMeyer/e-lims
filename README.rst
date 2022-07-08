@@ -1,3 +1,7 @@
+.. image:: https://img.shields.io/badge/pre--commit-enabled-brightgreen?logo=pre-commit&logoColor=white
+   :target: https://github.com/pre-commit/pre-commit
+   :alt: pre-commit
+
 ======
 e-lims
 ======
@@ -5,7 +9,7 @@ e-lims
 Laboratory Information Management System design for electronics .
 
 * Github templates
-* Repository: 
+* Repository:
 * Free software: MIT license
 
 Tools
@@ -22,7 +26,7 @@ Tools
 * Data base : `Maria DB`_ with `Sqlalchemy`_ ORM
 * Data validation: `Pydantic`_
 * Data manipulations: `Pandas_`, `Numpy`_ and `Scipy`_
-* Data visualizations: `Plotly`_ 
+* Data visualizations: `Plotly`_
 * Diagrams visualizations: `Mermaid`_
 * Documentation: `Sphinx`_
 * Application framework: `Dash`_
