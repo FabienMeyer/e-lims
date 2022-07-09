@@ -1,6 +1,4 @@
 # Container image that runs your code
-FROM alpine:3.10
-
 FROM python:3.8-slim as python-base
 
 ENV PIP_NO_CACHE_DIR=off \
@@ -24,9 +22,3 @@ RUN apt-get update \
 
 COPY poetry.lock pyproject.toml ./
 RUN poetry install --no-interaction --no-ansi -vvv -E tests -E doc
-
-# Copies your code file from your action repository to the filesystem path `/` of the container
-COPY entrypoint.sh /entrypoint.sh
-
-# Code file to execute when the docker container starts up (`entrypoint.sh`)
-ENTRYPOINT ["/entrypoint.sh"]
