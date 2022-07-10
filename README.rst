@@ -1,12 +1,12 @@
 ======
 e-lims
 ======
-|pypi| |docs| |coverage| |Security Rating| |Maintainability|
+|pypi| |license| |docs| |coverage| |Security Rating| |Maintainability|
 
 Laboratory Information Management System design for electronics.
 
 * Github templates
-* Repository:
+* Repository: https://github.com/FabienMeyer/e-lims
 * Free software: MIT license
 
 Tools
@@ -34,6 +34,12 @@ https://img.shields.io/pypi/v/e-lims
     :alt: Pypi version
     :scale: 100%
     :target: https://pypi.org/project/e-lims/
+    
+.. |license| image:: https://img.shields.io/pypi/l/e-lims
+    :alt: License
+    :scale: 100%
+    :target: https://github.com/FabienMeyer/e-lims/blob/main/LICENSE
+
 
 .. |docs| image:: https://readthedocs.org/projects/e-lims/badge/?version=latest
     :alt: Documentation Status
