@@ -10,19 +10,20 @@ Tools
 
 * Packaging and dependency management: Poetry_
 * Formatter: Black_
+* Clean code: SonarCloud_
 * Security: Bandit_
 * Style checker: Flake8_
 * Type checker: Mypy_
 * Tests framework: Pytest_
 * Automate and standardize testing: Tox_
 * Version: Bump2Version_
-* Data base : `Maria DB`_ with `Sqlalchemy`_ ORM
-* Data validation: `Pydantic`_
-* Data manipulations: `Pandas`_, `Numpy`_ and `Scipy`_
-* Data visualizations: `Plotly`_
-* Diagrams visualizations: `Mermaid`_
-* Documentation: `Sphinx`_
-* Application framework: `Dash`_
+* Data base : `Maria DB`_ with Sqlalchemy_ ORM
+* Data validation: Pydantic_
+* Data manipulations: Pandas_, Numpy_ and Scipy_
+* Data visualizations: Plotly_
+* Diagrams visualizations: Mermaid_
+* Documentation: Sphinx_
+* Application framework: Dash_
 
 .. |pypi| image:: https://img.shields.io/pypi/v/e-lims
     :alt: Pypi version
@@ -56,19 +57,20 @@ Tools
 
 .. _Poetry: https://python-poetry.org/
 .. _Black: https://black.readthedocs.io/en/stable/
-.. _`Bandit`: https://bandit.readthedocs.io/en/latest/
+.. _SonarCloud: https://sonarcloud.io/project/information?id=FabienMeyer_e-lims
+.. _Bandit: https://bandit.readthedocs.io/en/latest/
 .. _Flake8: https://flake8.pycqa.org/en/latest/
 .. _Mypy: http://mypy-lang.org/
 .. _Pytest: https://docs.pytest.org/en/stable/
 .. _Tox: http://testrun.org/tox/
 .. _Bump2Version: https://github.com/c4urself/bump2version
 .. _`Maria DB`: https://mariadb.org/
-.. _`Sqlalchemy`: https://www.sqlalchemy.org/
-.. _`Pydantic`: https://pydantic-docs.helpmanual.io/
-.. _`Pandas`: https://pandas.pydata.org/
-.. _`Numpy`: https://numpy.org/
-.. _`Scipy`: https://scipy.org/
-.. _`Mermaid`: https://mermaid-js.github.io/mermaid/#/
-.. _`Plotly`: https://plotly.com/dash/
+.. _Sqlalchemy: https://www.sqlalchemy.org/
+.. _Pydantic: https://pydantic-docs.helpmanual.io/
+.. _Pandas: https://pandas.pydata.org/
+.. _Numpy: https://numpy.org/
+.. _Scipy: https://scipy.org/
+.. _Mermaid: https://mermaid-js.github.io/mermaid/#/
+.. _Plotly: https://plotly.com/dash/
 .. _Sphinx: http://sphinx-doc.org/
-.. _`Dash`: https://plotly.com/dash/
+.. _Dash: https://plotly.com/dash/
