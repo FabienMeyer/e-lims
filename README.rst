@@ -1,7 +1,7 @@
 ======
 e-lims
 ======
-|build-status| |docs| |coverage| |Security Rating| | Maintainability |
+|docs| |coverage| |Security Rating| |Maintainability|
 
 Laboratory Information Management System design for electronics.
 
