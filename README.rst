@@ -22,7 +22,7 @@ Tools
 * Version: Bump2Version_
 * Data base : `Maria DB`_ with `Sqlalchemy`_ ORM
 * Data validation: `Pydantic`_
-* Data manipulations: `Pandas_`, `Numpy`_ and `Scipy`_
+* Data manipulations: `Pandas`_, `Numpy`_ and `Scipy`_
 * Data visualizations: `Plotly`_
 * Diagrams visualizations: `Mermaid`_
 * Documentation: `Sphinx`_
