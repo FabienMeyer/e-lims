@@ -1,7 +1,7 @@
 ======
 e-lims
 ======
-|build-status| |docs| |coverage|
+|build-status| |docs| |coverage| |Security Rating| | Maintainability |
 
 Laboratory Information Management System design for electronics.
 
@@ -28,19 +28,25 @@ Tools
 * Documentation: `Sphinx`_
 * Application framework: `Dash`_
 
-.. |build-status| image:: https://circleci.com/gh/readthedocs/readthedocs.org.svg?style=svg
-    :alt: build status
-    :target: https://circleci.com/gh/readthedocs/readthedocs.org
-
-.. |docs| image:: https://readthedocs.org/projects/docs/badge/?version=latest
+.. |docs| image:: https://readthedocs.org/projects/e-lims/badge/?version=latest
     :alt: Documentation Status
     :scale: 100%
-    :target: https://docs.readthedocs.io/en/latest/?badge=latest
+    :target: https://e-lims.readthedocs.io/en/latest/?badge=latest
 
 .. |coverage| image:: https://codecov.io/gh/readthedocs/readthedocs.org/branch/main/graph/badge.svg
     :alt: Test coverage
     :scale: 100%
     :target: https://codecov.io/gh/readthedocs/readthedocs.org
+
+.. |Security Rating| image:: https://sonarcloud.io/api/project_badges/measure?project=FabienMeyer_e-lims&metric=security_rating
+    :alt: Security Rating
+    :scale: 100%
+    :target: https://sonarcloud.io/project/overview?id=FabienMeyer_e-lims
+
+.. |Maintainability| image:: https://sonarcloud.io/api/project_badges/measure?project=FabienMeyer_e-lims&metric=sqale_rating
+    :alt: Maintainability
+    :scale: 100%
+    :target: https://sonarcloud.io/project/overview?id=FabienMeyer_e-lims
 
 .. _Poetry: https://python-poetry.org/
 .. _Black: https://black.readthedocs.io/en/stable/
