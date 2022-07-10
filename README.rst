@@ -28,6 +28,13 @@ Tools
 * Documentation: `Sphinx`_
 * Application framework: `Dash`_
 
+https://img.shields.io/pypi/v/e-lims
+
+.. |pypi| image:: https://img.shields.io/pypi/v/e-lims
+    :alt: Pypi version
+    :scale: 100%
+    :target: https://pypi.org/project/e-lims/
+
 .. |docs| image:: https://readthedocs.org/projects/e-lims/badge/?version=latest
     :alt: Documentation Status
     :scale: 100%
