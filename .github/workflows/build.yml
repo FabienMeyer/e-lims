@@ -28,7 +28,7 @@ jobs:
         if: steps.cached-poetry-dependencies.outputs.cache-hit != 'true'
         run: poetry install --no-interaction --no-root
       - name: Install library
-        run: poetry install --no-interaction
+        run: poetry install -E tests -E docs --no-interaction
       - name: Run tests
         run: |
           poetry run -e linters
