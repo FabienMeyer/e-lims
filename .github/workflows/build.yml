@@ -55,4 +55,9 @@ jobs:
         run: poetry install -E tests -E docs --no-interaction
       - name: Run tests
         run: |
-          poetry run tox -e pytest
+          if: matrix.python-version == "3.8"
+          poetry run tox -e py38
+          if: matrix.python-version == "3.9"
+          poetry run tox -e py39
+          if: matrix.python-version == "3.10"
+          poetry run tox -e py310
