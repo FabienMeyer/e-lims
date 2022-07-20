@@ -55,4 +55,4 @@ jobs:
         run: poetry install -E tests -E docs --no-interaction
       - name: Run tests
         run: |
-          poetry run pytest
+          poetry run pytest tests/
