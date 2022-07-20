@@ -7,7 +7,7 @@ from e_lims import e_lims
 
 
 @pytest.fixture
-def fixture_name():
+def name():
     # type: () -> str
     """Sample pytest fixture.
 
@@ -16,7 +16,7 @@ def fixture_name():
     return "World"
 
 
-def test_content(fixture_name):
+def test_content(name):
     # type: (str) -> None
     """Sample pytest test function with the pytest fixture as an argument."""
-    assert "Hello World" in e_lims.hello(fixture_name)
+    assert "Hello World" in e_lims.hello(name)
