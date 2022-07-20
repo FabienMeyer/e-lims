@@ -119,7 +119,7 @@ jobs:
           poetry config repositories.test-pypi https://test.pypi.org/legacy/
           with:
             user: __token__
-            password: ${{ secrets.PYPI_API_TOKEN }}
+            password: ${{ secrets.TEST_PYPI_TOKEN }}
           
       - name: Publish to PyPI
         run: |
@@ -127,4 +127,4 @@ jobs:
           poetry config repositories.pypi https://pypi.org/legacy/
           with:
             user: __token__
-            password: ${{ secrets.PYPI_API_TOKEN }}
+            password: ${{ secrets.PYPI_TOKEN }}
