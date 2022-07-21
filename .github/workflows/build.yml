@@ -60,6 +60,7 @@ jobs:
           poetry run pytest tests/
           
   documentations:
+    needs: tests
     runs-on: "ubuntu-latest"
     steps:
       - name: Set up python ${{ matrix.python-version }}
@@ -85,7 +86,7 @@ jobs:
           poetry run tox -e docs
   
   deploy:
-    needs: [documentations, tests]
+    needs: documentations
     runs-on: ubuntu-latest
     steps:
       - name: Set up python
