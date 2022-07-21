@@ -115,18 +115,16 @@ jobs:
      
       - name: Publish to TestPyPI
         run: |
-          poetry build
           poetry config repositories.test-pypi https://test.pypi.org/legacy/
           with:
             user: __token__
             password: ${{ secrets.TEST_PYPI_TOKEN }}
-          run: poetry publish
+          poetry publish
           
       - name: Publish to PyPI
         run: |
-          poetry build
           poetry config repositories.pypi https://pypi.org/legacy/
           with:
             user: __token__
             password: ${{ secrets.PYPI_TOKEN }}
-          run: poetry publish
+          poetry publish
