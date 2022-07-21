@@ -61,7 +61,7 @@ jobs:
           
   documentations:
     needs: tests
-    runs-on: ${{ matrix.os }}
+    runs-on: "ubuntu-latest"
     steps:
       - name: Set up python ${{ matrix.python-version }}
         id: setup-python
