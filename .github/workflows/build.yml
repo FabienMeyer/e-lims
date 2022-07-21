@@ -120,6 +120,7 @@ jobs:
           with:
             user: __token__
             password: ${{ secrets.TEST_PYPI_TOKEN }}
+          run: poetry publish
           
       - name: Publish to PyPI
         run: |
@@ -128,3 +129,4 @@ jobs:
           with:
             user: __token__
             password: ${{ secrets.PYPI_TOKEN }}
+          run: poetry publish
