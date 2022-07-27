@@ -58,32 +58,6 @@ jobs:
       - name: Run tests
         run: |
           poetry run pytest tests/
-          
-  documentations:
-    needs: linters
-    runs-on: "ubuntu-latest"
-    steps:
-      - name: Set up python ${{ matrix.python-version }}
-        id: setup-python
-        uses: actions/setup-python@v2
-        with:
-          python-version: "3.8"
-          
-      - name: Check out repository
-        uses: actions/checkout@v2
-          
-      - name: Install Poetry
-        uses: snok/install-poetry@v1
-        with:
-          virtualenvs-create: true
-          virtualenvs-in-project: true
-     
-      - name: Install package
-        run: poetry install -E tests -E docs --no-interaction
-        
-      - name: Run tests
-        run: |
-          poetry run tox -e docs
   
   deploy_package:
     needs: [tests]
@@ -123,3 +97,64 @@ jobs:
             user: __token__
             password: ${{ secrets.PYPI_TOKEN }}
           poetry publish
+
+  documentations:
+    needs: linters
+    runs-on: "ubuntu-latest"
+    steps:
+      - name: Set up python ${{ matrix.python-version }}
+        id: setup-python
+        uses: actions/setup-python@v2
+        with:
+          python-version: "3.8"
+          
+      - name: Check out repository
+        uses: actions/checkout@v2
+          
+      - name: Install Poetry
+        uses: snok/install-poetry@v1
+        with:
+          virtualenvs-create: true
+          virtualenvs-in-project: true
+     
+      - name: Install package
+        run: poetry install -E tests -E docs --no-interaction
+        
+      - name: Run tests
+        run: |
+          poetry run tox -e docs
+          
+      - name: artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: artifact-documentations
+          path: path/to/artifact/ # or path/to/artifact
+
+  deploy_documentations:
+    needs: [tests]
+    runs-on: ubuntu-latest
+    steps:
+      - name: Set up python
+        id: setup-python
+        uses: actions/setup-python@v2
+        with:
+          python-version: "3.8"
+          
+      - name: Check out repository
+        uses: actions/checkout@v2
+          
+      - name: Install Poetry
+        uses: snok/install-poetry@v1
+        with:
+          virtualenvs-create: true
+          virtualenvs-in-project: true
+          
+      - name: artifact
+        uses: actions/download-artifact@v3
+        with:
+         name: artifact-documentations
+        
+      - name: Display structure of downloaded files
+        run: ls -R
+        working-directory: path/to/artifacts
+          
