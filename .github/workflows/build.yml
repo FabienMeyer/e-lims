@@ -131,7 +131,7 @@ jobs:
           path: path/to/artifact/ # or path/to/artifact
 
   deploy_documentations:
-    needs: [tests]
+    needs: [documentations]
     runs-on: ubuntu-latest
     steps:
       - name: Set up python
