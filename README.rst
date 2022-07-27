@@ -27,32 +27,26 @@ Tools
 
 .. |pypi| image:: https://img.shields.io/pypi/v/e-lims
     :alt: Pypi version
-    :scale: 100%
     :target: https://pypi.org/project/e-lims/
     
 .. |license| image:: https://img.shields.io/pypi/l/e-lims
     :alt: License
-    :scale: 100%
     :target: https://github.com/FabienMeyer/e-lims/blob/main/LICENSE
 
 .. |docs| image:: https://readthedocs.org/projects/e-lims/badge/?version=latest
     :alt: Documentation Status
-    :scale: 100%
     :target: https://e-lims.readthedocs.io/en/latest/?badge=latest
 
 .. |coverage| image:: https://codecov.io/gh/readthedocs/readthedocs.org/branch/main/graph/badge.svg
     :alt: Test coverage
-    :scale: 100%
     :target: https://codecov.io/gh/readthedocs/readthedocs.org
 
 .. |Security Rating| image:: https://sonarcloud.io/api/project_badges/measure?project=FabienMeyer_e-lims&metric=security_rating
     :alt: Security Rating
-    :scale: 100%
     :target: https://sonarcloud.io/project/overview?id=FabienMeyer_e-lims
 
 .. |Maintainability| image:: https://sonarcloud.io/api/project_badges/measure?project=FabienMeyer_e-lims&metric=sqale_rating
     :alt: Maintainability
-    :scale: 100%
     :target: https://sonarcloud.io/project/overview?id=FabienMeyer_e-lims
 
 .. _Poetry: https://python-poetry.org/
