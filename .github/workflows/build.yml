@@ -85,8 +85,8 @@ jobs:
         run: |
           poetry run tox -e docs
   
-  deploy:
-    needs: [tests, documentations]
+  deploy_package:
+    needs: [tests]
     runs-on: ubuntu-latest
     steps:
       - name: Set up python
