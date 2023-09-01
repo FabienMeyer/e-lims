@@ -4,7 +4,7 @@ on:
     branches:
       - main
 jobs:
-  publish-hello-docker-image:
+  publish-elims-docker:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
@@ -17,6 +17,6 @@ jobs:
           password: ${{ secrets.GITHUB_TOKEN }}
       - name: Build the elims-docker Docker image
         run: |
-          docker build . --tag ghcr.io/FabienMeyer/e-lims:latest
-          docker run ghcr.io/FabienMeyer/e-lims:latest
-          docker push ghcr.io/FabienMeyer/e-lims:latest
+          docker build . --tag ghcr.io/fabienmeyer/e-lims:latest
+          docker run ghcr.io/fabienmeyer/e-lims:latest
+          docker push ghcr.io/fabienmeyer/e-lims:latest
