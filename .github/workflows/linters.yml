@@ -15,4 +15,4 @@ jobs:
         run: docker pull ghcr.io/fabienmeyer/e-lims:latest
       - name: Run Black
         run: |
-          docker run --rm -v $(pwd):/app ghcr.io/fabienmeyer/e-lims:latest poetry run black .
+          docker run ghcr.io/fabienmeyer/e-lims:latest poetry run black .
