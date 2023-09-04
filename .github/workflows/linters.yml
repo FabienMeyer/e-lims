@@ -8,9 +8,12 @@ on:
 jobs:
   run-black:
     runs-on: ubuntu-latest
+    container:
+      image: ghcr.io/fabienmeyer/e-lims:latest
+      credentials:
+         username: ${{ github.actor }}
+         password: ${{ secrets.GITHUB_TOKEN }}
     steps:
-      - name: Pull Docker image
-        run: docker pull ghcr.io/fabienmeyer/e-lims:latest
       - name: Checkout code
         uses: actions/checkout@v3
       - name: Run Black
