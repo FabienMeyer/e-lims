@@ -17,7 +17,10 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
       - name: Run Black
-        run: poetry run black .
+        run: |
+          ls -al
+          pwd
+          poetry run black .
       
       - name: Run Ruff
         run: poetry run ruff check .
