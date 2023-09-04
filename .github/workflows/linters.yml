@@ -1,4 +1,4 @@
-name: Run Black
+name: Run code linting
 
 on:
   push:
@@ -16,10 +16,13 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
+
+      - name: Poetry set vitualenv
+        run: |
+          poetry env use /app/.venv/bin/python
+
       - name: Run Black
         run: |
-          ls -al
-          pwd
           poetry run black .
       
       - name: Run Ruff
