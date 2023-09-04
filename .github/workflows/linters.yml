@@ -17,13 +17,10 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
       - name: Run Black
-        run: |
-          docker run ghcr.io/fabienmeyer/e-lims:latest poetry run black .
+        run: poetry run black .
       
       - name: Run Ruff
-        run: |
-          docker run ghcr.io/fabienmeyer/e-lims:latest poetry run ruff check .
+        run: poetry run ruff check .
 
       - name: Run Mypy
-        run: |
-            docker run ghcr.io/fabienmeyer/e-lims:latest poetry run mypy .
+        run: poetry run mypy .
