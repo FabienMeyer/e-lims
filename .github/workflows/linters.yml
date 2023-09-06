@@ -17,6 +17,14 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
 
+      # Project initialization:
+      - name: Poetry configure and install
+        run: |
+          poetry config virtualenvs.in-project true
+          poetry config virtualenvs.create true
+          poetry env use /root/.pyenv/versions/3.11.4/bin/python
+          poetry install
+
       - name: Run Black
         run: |
           poetry env use /app/.venv/bin/python  

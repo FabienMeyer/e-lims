@@ -38,13 +38,3 @@ RUN pyenv install ${PYTHON_VERSION} && \
 ENV POETRY_HOME="/root/.poetry/bin"
 RUN curl -sSL https://install.python-poetry.org | python3 - 
 ENV PATH="$POETRY_HOME/bin:$PATH"
-
-# Set working directory
-WORKDIR /app
-COPY pyproject.toml /app/
-
-# Project initialization:
-RUN poetry config virtualenvs.in-project true && \
-    poetry config virtualenvs.create true && \
-    poetry env use /root/.pyenv/versions/${PYTHON_VERSION}/bin/python && \
-    poetry install --no-dev --no-interaction --no-ansi
