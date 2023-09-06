@@ -28,10 +28,12 @@ RUN echo 'eval "$(pyenv init -)"' >> ~/.bashrc && \
     exec $SHELL
 
 # Install Python 3.11.4
-ENV PYTHON_VERSION=3.11.4
+ENV DEFAULT_PYENV_PYTHON=3.11.4
 RUN pyenv install ${PYTHON_VERSION} && \
-    pyenv global ${PYTHON_VERSION} && \
-    pyenv local ${PYTHON_VERSION} && \
+    pyenv install 3.12.dev && \
+    pyenv install 3.13.dev && \
+    pyenv global ${DEFAULT_PYENV_PYTHON} && \
+    pyenv local ${DEFAULT_PYENV_PYTHON} && \
     pyenv rehash
 
 # Install Poetry
