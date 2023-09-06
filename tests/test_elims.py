@@ -7,7 +7,7 @@ from elims import elims
 
 
 @pytest.fixture
-def name() -> None:
+def name() -> str:
     """Sample pytest fixture.
 
     See more at: http://doc.pytest.org/en/latest/fixture.html
