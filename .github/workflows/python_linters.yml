@@ -1,4 +1,4 @@
-name: Run code linting
+name: Run linters
 
 on:
   push:
@@ -6,7 +6,7 @@ on:
       - main
 
 jobs:
-  run-black:
+  run-linters:
     runs-on: ubuntu-latest
     container:
       image: ghcr.io/fabienmeyer/e-lims:latest
