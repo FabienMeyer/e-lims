@@ -31,5 +31,4 @@ jobs:
 
       - name: Run Pytest
         run: |
-          poetry env use /app/.venv/bin/python  
           poetry run pytest .
