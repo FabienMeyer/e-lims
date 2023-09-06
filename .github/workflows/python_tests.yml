@@ -15,8 +15,8 @@ jobs:
          password: ${{ secrets.GITHUB_TOKEN }}
     strategy:
       matrix:
-        python-version: ["3.11.4", "3.12.dev", "3.13.dev"]
-        
+        python-version: ["3.11.4", "3.12-dev", "3.13-dev"]
+
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
