@@ -22,7 +22,7 @@ jobs:
         run: |
           poetry config virtualenvs.in-project true
           poetry config virtualenvs.create true
-          poetry env use /root/.pyenv/versions/3.11.4/bin/python
+          poetry env use /root/.pyenv/versions/3.11.5/bin/python
           poetry install
 
       - name: Run Black
