@@ -6,7 +6,7 @@ on:
       - main
 
 jobs:
-  run-linters:
+  run-documentations:
     runs-on: ubuntu-latest
     container:
       image: ghcr.io/fabienmeyer/e-lims:latest
@@ -28,3 +28,9 @@ jobs:
       - name: Run Sphinx
         run: | 
           poetry run sphinx-build -E -W -c docs/source -b html docs/source docs/build/html
+
+      - name: Publish to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: docs/build/html
