@@ -1,2 +1,2 @@
 # -*- coding: utf-8 -*-
-"""elims tests."""
+"""e-lims tests."""
