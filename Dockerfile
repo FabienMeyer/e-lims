@@ -1,4 +1,4 @@
-FROM ubuntu:latest as e-lims-base
+FROM ubuntu:latest as elims-base
 
 # Install linux dependencies
 RUN DEBIAN_FRONTEND=noninteractive apt-get update && \

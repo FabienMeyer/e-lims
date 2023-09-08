@@ -5,7 +5,7 @@ import sys
 
 sys.path.insert(0, os.path.abspath(os.path.join('..', '..')))
 
-import e-lims
+import elims
 
 # -- General configuration ---------------------------------------------
 extensions = [
@@ -23,9 +23,9 @@ source_suffix = ".rst"
 master_doc = "index"
 
 # General information about the project.
-project = 'e-lims'
+project = 'elims'
 package = "e_lims"
-author = e-lims.__author__
+author = elims.__author__
 copyright = '2022, {}'.format(author)
 version = '0.0.4'
 release = '0.0.3'
@@ -64,7 +64,7 @@ texinfo_documents = [
      '{} Documentation'.format(project),
      author,
      'e_lims',
-     """E-lims Cookiecutter Template.""",
+     """elims Cookiecutter Template.""",
      'Miscellaneous'),
 ]
 

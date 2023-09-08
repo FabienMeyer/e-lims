@@ -1,12 +1,12 @@
 # -*- coding: utf-8 -*-
-"""e-lims main."""
+"""elims main."""
 
 
 def hello(name):
     # type: (str) -> str
     """Say hello.
 
-    >>> hello('e-lims')
-    'Hello e-lims!'
+    >>> hello('elims')
+    'Hello elims!'
     """
     return f"Hello {name}!"

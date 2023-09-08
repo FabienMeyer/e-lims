@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-"""e-lims Top-level."""
+"""elims Top-level."""
 
 __author__ = "Fabien Meyer"
 __email__ = "fabien-meyer@outlook.com"

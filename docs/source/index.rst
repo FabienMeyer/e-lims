@@ -1,5 +1,5 @@
 ==================================
-Welcome to e-lims's documentation!
+Welcome to elims's documentation!
 ==================================
 
 .. toctree::

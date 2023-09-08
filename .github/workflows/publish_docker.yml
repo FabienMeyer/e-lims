@@ -1,4 +1,4 @@
-name: publish-e-lims-docker
+name: publish-elims-docker
 on:
   push:
     branches:
@@ -7,7 +7,7 @@ on:
         - 'Dockerfile'
 permissions: write-all
 jobs:
-  publish-e-lims-docker:
+  publish-elims-docker:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
@@ -18,8 +18,8 @@ jobs:
           registry: ghcr.io
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
-      - name: Build the e-lims-docker Docker image
+      - name: Build the elims-docker Docker image
         run: |
-          docker build . --tag ghcr.io/fabienmeyer/e-lims:latest
-          docker run ghcr.io/fabienmeyer/e-lims:latest
-          docker push ghcr.io/fabienmeyer/e-lims:latest
+          docker build . --tag ghcr.io/fabienmeyer/elims:latest
+          docker run ghcr.io/fabienmeyer/elims:latest
+          docker push ghcr.io/fabienmeyer/elims:latest
