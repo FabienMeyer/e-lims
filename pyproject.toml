@@ -2,7 +2,7 @@
 name = "elims"
 version = "0.0.0"
 description = "elims Cookiecutter Template."
-readme = "README.md"
+readme = "README.rst"
 authors = ["Fabien Meyer <fabien-meyer@outlook.com>"]
 license = "MIT"
 include = ["elims/py.typed"]
