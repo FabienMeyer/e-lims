@@ -9,7 +9,7 @@ jobs:
   run-testing:
     runs-on: ubuntu-latest
     container:
-      image: ghcr.io/fabienmeyer/elims:latest
+      image: ghcr.io/fabienmeyer/e-lims:latest
       credentials:
          username: ${{ github.actor }}
          password: ${{ secrets.GITHUB_TOKEN }}
