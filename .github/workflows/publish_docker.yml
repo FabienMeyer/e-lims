@@ -1,4 +1,4 @@
-name: publish-elims-docker
+name: pudeploilish-elims-docker
 on:
   push:
     branches:
@@ -12,14 +12,19 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
+
       - name: Login to GitHub Container Registry
         uses: docker/login-action@v1
         with:
           registry: ghcr.io
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
-      - name: Build the elims-docker Docker image
-        run: |
-          docker build . --tag ghcr.io/fabienmeyer/e-lims:latest
-          docker run ghcr.io/fabienmeyer/e-lims:latest
-          docker push ghcr.io/fabienmeyer/e-lims:latest
+
+      - name: Build docker image
+        run: docker build . --tag ghcr.io/fabienmeyer/e-lims:latest
+
+      - name: Run docker image
+        run: docker run ghcr.io/fabienmeyer/e-lims:latest
+
+      - name: Push docker image
+        run: docker push ghcr.io/fabienmeyer/e-lims:latest
