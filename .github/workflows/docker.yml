@@ -1,10 +1,11 @@
-name: pudeploilish-elims-docker
+name: Docker
 on:
   push:
     branches:
       - main
     paths:
         - 'Dockerfile'
+        
 permissions: write-all
 jobs:
   publish-elims-docker:
