@@ -2,7 +2,7 @@
 name = "elims"
 version = "0.0.0"
 description = "elims."
-readme = "README.rst"
+readme = "README.md"
 authors = ["Fabien Meyer <fabien-meyer@outlook.com>"]
 license = "MIT"
 include = ["elims/py.typed"]
