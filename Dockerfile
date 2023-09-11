@@ -28,9 +28,10 @@ RUN echo 'eval "$(pyenv init -)"' >> ~/.bashrc && \
     exec $SHELL
 
 # Install Python 3.11.4
-ENV DEFAULT_PYENV_PYTHON=3.11.5
+ENV DEFAULT_PYENV_PYTHON=3.10.13
 
 RUN pyenv install ${DEFAULT_PYENV_PYTHON} && \
+    pyenv install 3.11.5 && \
     pyenv global ${DEFAULT_PYENV_PYTHON} && \
     pyenv local ${DEFAULT_PYENV_PYTHON} && \
     pyenv rehash

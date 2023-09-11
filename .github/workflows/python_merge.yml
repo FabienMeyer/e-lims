@@ -1,4 +1,4 @@
-name: Merge master
+name: Python mer
 
 on:
   push:
@@ -6,7 +6,7 @@ on:
       - main
 
 jobs:
-  run-linters:
+  build:
     runs-on: ubuntu-latest
     container:
       image: ghcr.io/fabienmeyer/e-lims:latest
@@ -24,6 +24,13 @@ jobs:
           poetry env use /root/.pyenv/versions/3.11.5/bin/python
           poetry install
 
+  linters:
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
       - name: Run Black
         run: | 
           poetry run black .
@@ -36,7 +43,7 @@ jobs:
         run: |
           poetry run mypy .
 
-  run-testing:
+  tests:
     runs-on: ubuntu-latest
     container:
       image: ghcr.io/fabienmeyer/e-lims:latest
@@ -45,7 +52,7 @@ jobs:
          password: ${{ secrets.GITHUB_TOKEN }}
     strategy:
       matrix:
-        python-version: ["3.11.5"]
+        python-version: ["3.10.13", "3.11.5"]
 
     steps:
       - name: Checkout code
@@ -62,3 +69,14 @@ jobs:
       - name: Run Pytest
         run: |
           poetry run pytest .
+
+  documentation:
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+        - name: Checkout code
+          uses: actions/checkout@v3
+
+        - name: Run Sphinx
+          run: | 
+            poetry run sphinx-build -E -W -c docs/source -b html docs/source docs/build/html
