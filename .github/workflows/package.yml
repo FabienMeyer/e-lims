@@ -24,7 +24,6 @@ jobs:
           poetry install
 
   linters:
-    needs: build
     runs-on: ubuntu-latest
     container:
       image: ${{ job.build.container.image }}
@@ -34,6 +33,13 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
+
+      - name: Poetry configure and install
+        run: |
+          poetry config virtualenvs.in-project true
+          poetry config virtualenvs.create true
+          poetry env use /root/.pyenv/versions/3.10.13/bin/python
+          poetry install
 
       - name: Run Black
         run: | 
@@ -74,7 +80,6 @@ jobs:
           poetry run pytest .
 
   documentation:
-    needs: build
     runs-on: ubuntu-latest
     container:
       image: ${{ job.build.container.image }}
@@ -82,12 +87,19 @@ jobs:
          username: ${{ github.actor }}
          password: ${{ secrets.GITHUB_TOKEN }}
     steps:
-        - name: Checkout code
-          uses: actions/checkout@v3
+      - name: Checkout code
+        uses: actions/checkout@v3
 
-        - name: Run Sphinx
-          run: | 
-            poetry run sphinx-build -E -W -c docs/source -b html docs/source docs/build/html
+      - name: Poetry configure and install
+        run: |
+          poetry config virtualenvs.in-project true
+          poetry config virtualenvs.create true
+          poetry env use /root/.pyenv/versions/3.10.13/bin/python
+          poetry install
+
+      - name: Run Sphinx
+        run: | 
+          poetry run sphinx-build -E -W -c docs/source -b html docs/source docs/build/html
 
   pages:
     needs: documentation
@@ -95,6 +107,17 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
+
+      - name: Poetry configure and install
+        run: |
+          poetry config virtualenvs.in-project true
+          poetry config virtualenvs.create true
+          poetry env use /root/.pyenv/versions/3.10.13/bin/python
+          poetry install
+
+      - name: Run Sphinx
+        run: | 
+          poetry run sphinx-build -E -W -c docs/source -b html docs/source docs/build/html
 
       - name: Deploy documentation
         uses: peaceiris/actions-gh-pages@v3
@@ -109,6 +132,13 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
+
+      - name: Poetry configure and install
+        run: |
+          poetry config virtualenvs.in-project true
+          poetry config virtualenvs.create true
+          poetry env use /root/.pyenv/versions/3.10.13/bin/python
+          poetry install
 
       - name: Poetry build
         run: poetry build
