@@ -21,7 +21,7 @@ jobs:
         run: |
           poetry config virtualenvs.in-project true
           poetry config virtualenvs.create true
-          poetry env use /root/.pyenv/versions/3.11.5/bin/python
+          poetry env use /root/.pyenv/versions/3.10.13/bin/python
           poetry install
 
   linters:
@@ -80,3 +80,32 @@ jobs:
         - name: Run Sphinx
           run: | 
             poetry run sphinx-build -E -W -c docs/source -b html docs/source docs/build/html
+
+  pages:
+    needs: documentation
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Deploy documentation
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./docs/build/html
+
+  pypi:
+    needs: [tests, linters]
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Poetry build
+        run: poetry build
+
+      # - name: Poetry publish
+      #   run: poetry publish
+      #   env:
+      #     TWINE_USERNAME: __token__
+      #     TWINE_PASSWORD: ${{ secrets.PYPI_TOKEN }}
