@@ -39,7 +39,7 @@ jobs:
       
       - name: Run Ruff
         run: |
-          poetry run ruff check /tests/ /elims/
+          poetry run ruff .
 
       - name: Run Mypy
         run: |
