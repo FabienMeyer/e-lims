@@ -39,7 +39,7 @@ jobs:
       
       - name: Run Ruff
         run: |
-          poetry run ruff check .
+          poetry run ruff check /tests/ /elims/
 
       - name: Run Mypy
         run: |
@@ -135,9 +135,6 @@ jobs:
 
   pypi-offical:
     needs: [pypi-test]
-    on:
-      tags:
-        - v*
     runs-on: ubuntu-latest
 
     steps:
