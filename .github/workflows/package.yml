@@ -5,7 +5,7 @@ on:
       - main
 
 jobs:
-  build:
+  linters:
     runs-on: ubuntu-latest
     container:
       image: ghcr.io/fabienmeyer/e-lims:latest
@@ -23,10 +23,6 @@ jobs:
           poetry env use /root/.pyenv/versions/3.10.13/bin/python
           poetry install
 
-  linters:
-    runs-on: ubuntu-latest
-    needs: build
-    steps:
       - name: Checkout code
         uses: actions/checkout@v3
 
@@ -77,8 +73,21 @@ jobs:
 
   documentation:
     runs-on: ubuntu-latest
-    needs: build
+    container:
+      image: ghcr.io/fabienmeyer/e-lims:latest
+      credentials:
+         username: ${{ github.actor }}
+         password: ${{ secrets.GITHUB_TOKEN }}
     steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Poetry configure and install
+        run: |
+          poetry config virtualenvs.in-project true
+          poetry config virtualenvs.create true
+          poetry env use /root/.pyenv/versions/3.10.13/bin/python
+          poetry install
       - name: Checkout code
         uses: actions/checkout@v3
 
