@@ -39,6 +39,7 @@ jobs:
       
       - name: Run Ruff
         run: |
+          ls -la
           poetry run ruff .
 
       - name: Run Mypy
