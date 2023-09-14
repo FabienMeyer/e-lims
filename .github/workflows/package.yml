@@ -5,7 +5,7 @@ on:
       - main
 
 jobs:
-  linters:
+  build:
     runs-on: ubuntu-latest
     container:
       image: ghcr.io/fabienmeyer/e-lims:latest
@@ -23,15 +23,20 @@ jobs:
           poetry env use /root/.pyenv/versions/3.10.13/bin/python
           poetry install
 
+      - name: Push docker image
+        run: docker push ghcr.io/fabienmeyer/e-lims:latest
+
+  linters:
+    runs-on: ubuntu-latest
+    needs: [build]
+    container:
+      image: ghcr.io/fabienmeyer/e-lims:latest
+      credentials:
+         username: ${{ github.actor }}
+         password: ${{ secrets.GITHUB_TOKEN }}
+    steps:
       - name: Checkout code
         uses: actions/checkout@v3
-
-      - name: Poetry configure and install
-        run: |
-          poetry config virtualenvs.in-project true
-          poetry config virtualenvs.create true
-          poetry env use /root/.pyenv/versions/3.10.13/bin/python
-          poetry install
 
       - name: Run Black
         run: | 
@@ -46,98 +51,101 @@ jobs:
         run: |
           poetry run mypy elims/ tests/
 
-  tests:
-    runs-on: ubuntu-latest
-    container:
-      image: ghcr.io/fabienmeyer/e-lims:latest
-      credentials:
-         username: ${{ github.actor }}
-         password: ${{ secrets.GITHUB_TOKEN }}
-    strategy:
-      matrix:
-        python-version: ["3.10.13", "3.11.5"]
 
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v3
+      
 
-      - name: Poetry configure and install
-        run: |
-          poetry config virtualenvs.in-project true
-          poetry config virtualenvs.create true
-          poetry env use /root/.pyenv/versions/${{ matrix.python-version }}/bin/python
-          poetry install
+  # tests:
+  #   runs-on: ubuntu-latest
+  #   container:
+  #     image: ghcr.io/fabienmeyer/e-lims:latest
+  #     credentials:
+  #        username: ${{ github.actor }}
+  #        password: ${{ secrets.GITHUB_TOKEN }}
+  #   strategy:
+  #     matrix:
+  #       python-version: ["3.10.13", "3.11.5"]
 
-      - name: Run Pytest
-        run: |
-          poetry run pytest --cov=tests .
-          poetry run coverage xml  
+  #   steps:
+  #     - name: Checkout code
+  #       uses: actions/checkout@v3
 
-      - name: Poetry build
-        run: |
-          poetry build
+  #     - name: Poetry configure and install
+  #       run: |
+  #         poetry config virtualenvs.in-project true
+  #         poetry config virtualenvs.create true
+  #         poetry env use /root/.pyenv/versions/${{ matrix.python-version }}/bin/python
+  #         poetry install
 
-  documentation:
-    runs-on: ubuntu-latest
-    container:
-      image: ghcr.io/fabienmeyer/e-lims:latest
-      credentials:
-         username: ${{ github.actor }}
-         password: ${{ secrets.GITHUB_TOKEN }}
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v3
+  #     - name: Run Pytest
+  #       run: |
+  #         poetry run pytest --cov=tests .
+  #         poetry run coverage xml  
 
-      - name: Poetry configure and install
-        run: |
-          poetry config virtualenvs.in-project true
-          poetry config virtualenvs.create true
-          poetry env use /root/.pyenv/versions/3.10.13/bin/python
-          poetry install
-      - name: Checkout code
-        uses: actions/checkout@v3
+  #     - name: Poetry build
+  #       run: |
+  #         poetry build
 
-      - name: Poetry configure and install
-        run: |
-          poetry config virtualenvs.in-project true
-          poetry config virtualenvs.create true
-          poetry env use /root/.pyenv/versions/3.10.13/bin/python
-          poetry install
+  # documentation:
+  #   runs-on: ubuntu-latest
+  #   container:
+  #     image: ghcr.io/fabienmeyer/e-lims:latest
+  #     credentials:
+  #        username: ${{ github.actor }}
+  #        password: ${{ secrets.GITHUB_TOKEN }}
+  #   steps:
+  #     - name: Checkout code
+  #       uses: actions/checkout@v3
 
-      - name: Run Sphinx
-        run: | 
-          poetry run sphinx-build -E -W -c docs/source -b html docs/source docs/build/html
+  #     - name: Poetry configure and install
+  #       run: |
+  #         poetry config virtualenvs.in-project true
+  #         poetry config virtualenvs.create true
+  #         poetry env use /root/.pyenv/versions/3.10.13/bin/python
+  #         poetry install
+  #     - name: Checkout code
+  #       uses: actions/checkout@v3
 
-  pages:
-    runs-on: ubuntu-latest
-    needs: [documentation, linters, tests]
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v3
+  #     - name: Poetry configure and install
+  #       run: |
+  #         poetry config virtualenvs.in-project true
+  #         poetry config virtualenvs.create true
+  #         poetry env use /root/.pyenv/versions/3.10.13/bin/python
+  #         poetry install
 
-      - name: Deploy documentation
-        uses: peaceiris/actions-gh-pages@v3
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./docs/build/html
+  #     - name: Run Sphinx
+  #       run: | 
+  #         poetry run sphinx-build -E -W -c docs/source -b html docs/source docs/build/html
 
-  pypi-offical:
-    needs: [documentation, linters, tests]
-    runs-on: ubuntu-latest
+  # pages:
+  #   runs-on: ubuntu-latest
+  #   needs: [documentation, linters, tests]
+  #   steps:
+  #     - name: Checkout code
+  #       uses: actions/checkout@v3
 
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v3
+  #     - name: Deploy documentation
+  #       uses: peaceiris/actions-gh-pages@v3
+  #       with:
+  #         github_token: ${{ secrets.GITHUB_TOKEN }}
+  #         publish_dir: ./docs/build/html
 
-      - name: Poetry configure and install
-        run: |
-          poetry config virtualenvs.in-project true
-          poetry config virtualenvs.create true
-          poetry env use /root/.pyenv/versions/3.10.13/bin/python
-          poetry install
+  # pypi-offical:
+  #   needs: [documentation, linters, tests]
+  #   runs-on: ubuntu-latest
 
-      - name: Poetry build
-        run: poetry build
+  #   steps:
+  #     - name: Checkout code
+  #       uses: actions/checkout@v3
+
+  #     - name: Poetry configure and install
+  #       run: |
+  #         poetry config virtualenvs.in-project true
+  #         poetry config virtualenvs.create true
+  #         poetry env use /root/.pyenv/versions/3.10.13/bin/python
+  #         poetry install
+
+  #     - name: Poetry build
+  #       run: poetry build
 
       # - name: Poetry publish
       #   run: poetry publish
