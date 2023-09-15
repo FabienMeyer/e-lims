@@ -1,6 +1,18 @@
 FROM ubuntu:latest as elims-base
 
-# Install linux dependencies
+# Install Docker CLI
+RUN apt-get update && \
+    apt-get -y install \
+    apt-transport-https \
+    ca-certificates \
+    curl \
+    software-properties-common && \
+    curl -fsSL https://download.docker.com/linux/ubuntu/gpg | apt-key add - && \
+    add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable" && \
+    apt-get update && \
+    apt-get -y install docker-ce-cli
+
+# Install dependencies
 RUN DEBIAN_FRONTEND=noninteractive apt-get update && \
     DEBIAN_FRONTEND=noninteractive apt-get install -y \
         build-essential \
