@@ -23,17 +23,10 @@ jobs:
           poetry env use /root/.pyenv/versions/3.10.13/bin/python
           poetry install
       
-      - name: Build Docker image with updated dependencies
+      - name: Build Custom Docker Image
         run: |
-            docker build -t ci-run:latest .
-            docker tag ci-run:latest ghcr.io/fabienmeyer/e-lims:latest
-  
-      - name: Push updated Docker image
-        run: |
+            docker build -t e-lims:latest -f Dockerfile .
             docker push ghcr.io/fabienmeyer/e-lims:latest
-
-      - name: Push docker image
-        run: docker push ghcr.io/fabienmeyer/e-lims:latest
 
   linters:
     runs-on: ubuntu-latest
