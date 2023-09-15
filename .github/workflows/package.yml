@@ -14,16 +14,15 @@ jobs:
          password: ${{ secrets.GITHUB_TOKEN }}
     steps:
 
-
       - name: Checkout code
         uses: actions/checkout@v3
 
-      - name: Poetry configure and install
-        run: |
-          poetry config virtualenvs.in-project true
-          poetry config virtualenvs.create true
-          poetry env use /root/.pyenv/versions/3.10.13/bin/python
-          poetry install
+      # - name: Poetry configure and install
+      #   run: |
+      #     poetry config virtualenvs.in-project true
+      #     poetry config virtualenvs.create true
+      #     poetry env use /root/.pyenv/versions/3.10.13/bin/python
+      #     poetry install
       
       - name: Set up Docker
         uses: docker/setup-buildx-action@v1
