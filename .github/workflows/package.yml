@@ -13,6 +13,8 @@ jobs:
          username: ${{ github.actor }}
          password: ${{ secrets.GITHUB_TOKEN }}
     steps:
+
+
       - name: Checkout code
         uses: actions/checkout@v3
 
@@ -23,6 +25,9 @@ jobs:
           poetry env use /root/.pyenv/versions/3.10.13/bin/python
           poetry install
       
+      - name: Set up Docker
+        uses: docker/setup-buildx-action@v1
+
       - name: Build Custom Docker Image
         run: |
             docker build -t e-lims:latest -f Dockerfile .
