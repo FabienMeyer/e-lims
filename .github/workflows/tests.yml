@@ -6,6 +6,58 @@ on:
     branches: [main]
 
 jobs:
+  linters:
+    runs-on: Ubuntu-latest
+    defaults:
+      run:
+        shell: bash
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: "3.10"
+
+      - name: Bootstrap poetry
+        run: |
+          curl -sSL https://install.python-poetry.org | python - -y
+
+      - name: Configure poetry
+        run: poetry config virtualenvs.in-project true
+
+      - name: Set up cache
+        uses: actions/cache@v3
+        id: cache
+        with:
+          path: .venv
+          key: venv-${{ hashFiles('**/poetry.lock') }}
+
+      - name: Ensure cache is healthy
+        if: steps.cache.outputs.cache-hit == 'true'
+        run: |
+          [ "$(command -v timeout)" ] || function timeout() { perl -e 'alarm shift; exec @ARGV' "$@"; }
+          timeout 10s poetry run pip --version || rm -rf .venv
+
+      - name: Install dependencies
+        run: poetry install
+
+      - name: Check lock file
+        run: poetry check --lock
+
+      - name: Run Black
+        run: | 
+          poetry run black elims/ tests/
+      
+      - name: Run Ruff
+        run: |
+          ls -la
+          poetry run ruff elims/ tests/
+
+      - name: Run Mypy
+        run: |
+          poetry run mypy elims/ tests/   
+
   tests:
     name: ${{ matrix.os }} / ${{ matrix.python-version }}
     runs-on: "${{ matrix.os }}-latest"
@@ -57,9 +109,7 @@ jobs:
       - name: Ensure cache is healthy
         if: steps.cache.outputs.cache-hit == 'true'
         run: |
-          # `timeout` is not available on macOS, so we define a custom function.
           [ "$(command -v timeout)" ] || function timeout() { perl -e 'alarm shift; exec @ARGV' "$@"; }
-          # Using `timeout` is a safeguard against the Poetry command hanging for some reason.
           timeout 10s poetry run pip --version || rm -rf .venv
 
       - name: Install dependencies
@@ -72,16 +122,3 @@ jobs:
         run: |
           poetry run pytest --cov=tests .
           poetry run coverage xml  
-
-      - name: Run Black
-        run: | 
-          poetry run black elims/ tests/
-      
-      - name: Run Ruff
-        run: |
-          ls -la
-          poetry run ruff elims/ tests/
-
-      - name: Run Mypy
-        run: |
-          poetry run mypy elims/ tests/   
