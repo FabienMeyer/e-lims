@@ -132,18 +132,6 @@ jobs:
           files: ./coverage.xml
           fail_ci_if_error: true
 
-      - name: Build documentation
-        run: poetry run tox -e docs
-
-      - name: Upload artifact
-        uses: actions/upload-pages-artifact@v1
-        with:
-          path: 'docs/build/html'
-
-      - name: Deploy to GitHub Pages
-        id: deployment
-        uses: actions/deploy-pages@v1
-
   documentation:
     runs-on: Ubuntu-latest
     needs: [tests]
