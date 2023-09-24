@@ -7,7 +7,7 @@ on:
       - main
 
 jobs:
-  linters:
+  Linters:
     runs-on: Ubuntu-latest
     defaults:
       run:
@@ -59,7 +59,7 @@ jobs:
         run: |
           poetry run mypy elims/ tests/   
 
-  tests:
+  Tests:
     name: Tests - ${{ matrix.os }} / ${{ matrix.python-version }}
     runs-on: "${{ matrix.os }}-latest"
     needs: [linters]
@@ -133,7 +133,7 @@ jobs:
           files: ./coverage.xml
           fail_ci_if_error: true
 
-  documentation:
+  Documentation:
     runs-on: Ubuntu-latest
     needs: [tests]
     defaults:
