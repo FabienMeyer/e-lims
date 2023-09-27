@@ -143,7 +143,7 @@ jobs:
           path: 'docs/build/html'
 
   
-      - name: Deploy to GitHub Pages
-        if: ${{ matrix.os == 'Windows' }} and ${{ matrix.python-version == '3.10' }}
-        id: deployment
-        uses: actions/deploy-pages@v1
+      # - name: Deploy to GitHub Pages
+      #   if: ${{ matrix.os == 'Windows' }} and ${{ matrix.python-version == '3.10' }}
+      #   id: deployment
+      #   uses: actions/deploy-pages@v1
