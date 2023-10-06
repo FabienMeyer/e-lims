@@ -1,0 +1,28 @@
+# CODEOWNERS
+
+# This file declares which users are qualified to review and approve changes to
+# specific files or paths in this repository. It helps contributors to identify
+# whom to consult for assistance on merge requests.
+
+# Note that rules defined later in the file take precedence over the rules defined earlier.
+
+# Default owners
+*                       @FabienMeyer
+
+# Global files. 
+.gitignore              @FabienMeyer
+
+# Python.
+pyproject.toml          @FabienMeyer
+
+# CI.
+/.github/workflows      @FabienMeyer
+
+# Libraries.
+/libs/e-lims-logger     @FabienMeyer
+
+# Code of conduct
+/CODE_OF_CONDUCT        @FabienMeyer
+
+# CODEOWNERS 
+/CODEOWNERS             @FabienMeyer
