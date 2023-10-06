@@ -4,7 +4,7 @@ on:
   push: {}
 
 jobs:
-  Linters:
+  Tox-On-Push:
     runs-on: Ubuntu-latest
     defaults:
       run:
@@ -18,7 +18,7 @@ jobs:
           python-version: "3.10"
 
       - name: Move to e-lims-logger directory
-        run: cd libs\e-lims-logger
+        run: cd /libs/e-lims-logger
 
       - name: Bootstrap poetry
         run: |
