@@ -28,7 +28,7 @@ jobs:
         python-version: '3.10'
 
     - name: Move to e-lims-utils
-        run: cd libs/e-lims-utils
+      run: cd libs/e-lims-utils
 
     - name: Install Poetry
       run: |
