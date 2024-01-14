@@ -1,0 +1,42 @@
+name: E-lims Utils CI
+
+on:
+  push:
+    paths:
+      - 'libs/e-lims-utils/**'
+  pull_request:
+    paths:
+      - 'libs/e-lims-utils/**'
+
+jobs:
+  build:
+    runs-on: ${{ matrix.os }}
+
+    strategy:
+      matrix:
+        os: [ubuntu-latest]
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2
+      with:
+        path: 'libs/e-lims-utils'
+
+    - name: Set up Python
+      uses: actions/setup-python@v2
+      with:
+        python-version: 3.10
+
+    - name: Install Poetry
+      run: |
+        curl -sSL https://install.python-poetry.org | python3 -
+        export PATH="$HOME/.poetry/bin:$PATH"
+      
+    - name: Install dependencies
+      run: poetry install -E tests -E docs
+
+    - name: Linters
+      run: poetry run tox -e linters
+
+    - name: Documentation code
+      run: poetry run tox -e documentation
