@@ -10,29 +10,28 @@ on:
 
 jobs:
   build:
-    runs-on: ${{ matrix.os }}
+    runs-on: ubuntu-latest
 
     strategy:
       matrix:
         os: [ubuntu-latest]
 
     steps:
-    
     - name: Checkout repository
-    - uses: actions/checkout@v4
+      uses: actions/checkout@v4
       with:
         path: 'libs/e-lims-utils'
 
     - name: Set up Python
-    - uses: actions/setup-python@v5
+      uses: actions/setup-python@v2
       with:
-        python-version: '3.10' 
+        python-version: '3.10'
 
     - name: Install Poetry
       run: |
         curl -sSL https://install.python-poetry.org | python3 -
         export PATH="$HOME/.poetry/bin:$PATH"
-      
+
     - name: Install dependencies
       run: poetry install -E tests -E docs
 
