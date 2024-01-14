@@ -1,11 +1,10 @@
-# -*- coding: utf-8 -*-
 """Sphinx configuration."""
 import os
 import sys
 
-sys.path.insert(0, os.path.abspath(os.path.join('..', '..')))
+sys.path.insert(0, os.path.abspath(os.path.join("..", "..")))
 
-import elims  # noqa: E402
+import src
 
 # -- General configuration ---------------------------------------------
 extensions = [
@@ -20,56 +19,43 @@ extensions = [
 
 templates_path = ["_templates"]
 source_suffix = {
-    '.rst': 'restructuredtext',
-    '.txt': 'markdown',
-    '.md': 'markdown',
+    ".rst": "restructuredtext",
+    ".txt": "markdown",
+    ".md": "markdown",
 }
 master_doc = "index"
 
 # General information about the project.
-project = 'elims'
-package = "e_lims"
-author = elims.__author__
-copyright = '2022, {}'.format(author)
-version = '0.0.4'
-release = '0.0.3'
-language = 'en'
+project = "e-lims-utils"
+package = "e-lims-utils"
+author = src.__author__
+copyright = f"2024, {author}"
+version = src.__version__
+release = src.__version__
+language = "en"
 exclude_patterns = []
 pygments_style = "sphinx"
 todo_include_todos = True
 
-
 # -- Options for HTML output -------------------------------------------
-html_theme = "sphinx_rtd_theme"
+html_theme = "furo"
 
 # -- Options for HTMLHelp output ---------------------------------------
-htmlhelp_basename = 'e_limsdoc'
+htmlhelp_basename = f"{project}-doc"
 
 # -- Options for LaTeX output ------------------------------------------
 latex_elements = {}
 
 latex_documents = [
-    (master_doc, 'e_lims.tex',
-     '{} Documentation'.format(project),
-     author, 'manual'),
+    (master_doc, f"{project}.tex", f"{project} Documentation", author, "manual"),
 ]
-
 
 # -- Options for manual page output ------------------------------------
-man_pages = [
-    (master_doc, 'e_lims',
-     '{} Documentation'.format(project),
-     [author], 1)
-]
+man_pages = [(master_doc, project, f"{project} Documentation", [author], 1)]
 
 # -- Options for Texinfo output ----------------------------------------
 texinfo_documents = [
-    (master_doc, 'e_lims',
-     '{} Documentation'.format(project),
-     author,
-     'e_lims',
-     """elims Cookiecutter Template.""",
-     'Miscellaneous'),
+    (master_doc, project, f"{project} Documentation", author, project, """e-lims-utils Cookiecutter Template.""", "Miscellaneous"),
 ]
 
 intersphinx_mapping = {"python": ("https://docs.python.org/3/", None)}

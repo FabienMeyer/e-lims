@@ -1,13 +1,6 @@
 =======================================
-Welcome to e-lims-logger documentation!
+Welcome to e-lims-utils documentation!
 =======================================
-
-.. toctree::
-   :maxdepth: 1
-   :caption: Contents:
-
-   readme
-
 
 Indices and tables
 ==================

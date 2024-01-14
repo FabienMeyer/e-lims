@@ -1,4 +1,7 @@
 {
+    "files.exclude": {
+        "**/__pycache__": true
+    },
+    "iis.configDir": "",
     "esbonio.sphinx.confDir": "",
-    "iis.configDir": ""
 }

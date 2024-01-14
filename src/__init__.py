@@ -1,5 +1,4 @@
-# -*- coding: utf-8 -*-
-"""e-lims-logger."""
+"""e-lims."""
 
 __author__ = "Fabien Meyer"
 __email__ = "fabien-meyer@outlook.com"
