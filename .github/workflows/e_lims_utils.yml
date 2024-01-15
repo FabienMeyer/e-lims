@@ -42,34 +42,34 @@ jobs:
       run:  |
         cd libs/e-lims-utils
         poetry run tox -e linters
-        if: matrix.python == '3.10'
+      if: matrix.python == '3.10'
 
     - name: Python 3.10 Tests 
       run:  |
         cd libs/e-lims-utils
         poetry run tox -e py310
-        if: matrix.python == '3.10'
+      if: matrix.python == '3.10'
   
     - name: Python 3.11 Tests 
       run:  |
         cd libs/e-lims-utils
         poetry run tox -e py311
-        if: matrix.python == '3.11'
+      if: matrix.python == '3.11'
 
     - name: Python 3.12 Tests 
       run:  |
         cd libs/e-lims-utils
         poetry run tox -e py312
-        if: matrix.python == '3.12'
+      if: matrix.python == '3.12'
 
     - name: Documentation
       run:  |
         cd libs/e-lims-utils
         poetry run tox -e documentation
-        if: matrix.python == '3.10'
+      if: matrix.python == '3.10'
 
     - name: Build
       run: |
         cd libs/e-lims-utils
         poetry build
-        if: matrix.python == '3.10'
+      if: matrix.python == '3.10'
