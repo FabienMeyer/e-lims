@@ -15,6 +15,7 @@ jobs:
     strategy:
       matrix:
         os: [ubuntu-latest]
+        python: ['3.10', '3.11', '3.12']
 
     steps:
     - name: Checkout repository
@@ -25,7 +26,7 @@ jobs:
     - name: Set up Python
       uses: actions/setup-python@v2.3.1
       with:
-        python-version: '3.10'
+        python-version: ${{ matrix.python }}
 
     - name: Install Poetry
       run: |
@@ -41,28 +42,34 @@ jobs:
       run:  |
         cd libs/e-lims-utils
         poetry run tox -e linters
+        if: matrix.python == '3.10'
 
     - name: Python 3.10 Tests 
       run:  |
         cd libs/e-lims-utils
         poetry run tox -e py310
+        if: matrix.python == '3.10'
   
     - name: Python 3.11 Tests 
       run:  |
         cd libs/e-lims-utils
         poetry run tox -e py311
+        if: matrix.python == '3.11'
 
     - name: Python 3.12 Tests 
       run:  |
         cd libs/e-lims-utils
         poetry run tox -e py312
+        if: matrix.python == '3.12'
 
     - name: Documentation
       run:  |
         cd libs/e-lims-utils
         poetry run tox -e documentation
+        if: matrix.python == '3.10'
 
     - name: Build
       run: |
         cd libs/e-lims-utils
         poetry build
+        if: matrix.python == '3.10'
