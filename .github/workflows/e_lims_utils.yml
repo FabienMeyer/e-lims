@@ -39,10 +39,10 @@ jobs:
 
     - name: Linters
       run:  |
-        # cd libs/e-lims-utils
+        cd libs/e-lims-utils
         poetry run tox -e linters
 
     - name: Documentation code
       run:  |
-        # cd libs/e-lims-utils
+        cd libs/e-lims-utils
         poetry run tox -e documentation
