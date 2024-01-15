@@ -71,5 +71,5 @@ jobs:
     - name: Build
       run: |
         cd libs/e-lims-utils
-        poetry build
+        poetry tox -e build
       if: matrix.python == '3.10'
