@@ -59,7 +59,7 @@ name = "PyPI"
 priority = "primary"
 
 [build-system]
-requires = ["poetry_core"]
+requires = ["poetry>=1.7.1"]
 build-backend = "poetry.core.masonry.api"
 
 [tool.commitizen]
