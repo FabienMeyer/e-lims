@@ -123,7 +123,7 @@ jobs:
     - name: Install Poetry
       run: |
         curl -sSL https://install.python-poetry.org | python3 -
-        echo "C:\\Users\\runneradmin\\AppData\\Roaming\\Python\\Scripts" >> $GITHUB_PATH
+        export PATH="$HOME/.poetry/bin:$PATH"
 
     - name: Install dependencies
       run: |
