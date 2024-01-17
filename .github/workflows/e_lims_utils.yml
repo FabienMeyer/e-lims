@@ -43,7 +43,7 @@ jobs:
 
     strategy:
       matrix:
-        os: [ubuntu-latest]
+        os: [ubuntu-latest, windows-latest, macos-latest]
         python: ['3.10', '3.11', '3.12']
 
     steps:
@@ -118,3 +118,32 @@ jobs:
       run:  |
         cd libs/e-lims-utils
         poetry run tox -e documentation
+
+  build:
+    runs-on: windows-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+      with:
+        path: 'libs/e-lims-utils'
+
+    - name: Set up Python
+      uses: actions/setup-python@v2.3.1
+      with:
+        python-version: '3.10'
+
+    - name: Install Poetry
+      run: |
+        curl -sSL https://install.python-poetry.org | python3 -
+        export PATH="$HOME/.poetry/bin:$PATH"
+
+    - name: Install dependencies
+      run: |
+        cd libs/e-lims-utils
+        poetry install -E tests -E docs
+
+    - name: Build
+      run:  |
+        cd libs/e-lims-utils
+        poetry run tox -e build
