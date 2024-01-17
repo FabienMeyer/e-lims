@@ -67,23 +67,10 @@ jobs:
         cd libs/e-lims-utils
         poetry install -E tests -E docs
 
-    - name: Python 3.10 Tests 
+    - name: Python Tests
       run:  |
         cd libs/e-lims-utils
-        poetry run tox -e py310
-      if: matrix.python == '3.10'
-  
-    - name: Python 3.11 Tests 
-      run:  |
-        cd libs/e-lims-utils
-        poetry run tox -e py311
-      if: matrix.python == '3.11'
-
-    - name: Python 3.12 Tests 
-      run:  |
-        cd libs/e-lims-utils
-        poetry run tox -e py312
-      if: matrix.python == '3.12'
+        poetry run tox -e py${{ matrix.python }}
 
   documentation:
     runs-on: ubuntu-latest
@@ -136,7 +123,7 @@ jobs:
     - name: Install Poetry
       run: |
         curl -sSL https://install.python-poetry.org | python3 -
-        echo "::add-path::C:\\Users\\runneradmin\\AppData\\Roaming\\Python\\Scripts"
+        echo "C:\\Users\\runneradmin\\AppData\\Roaming\\Python\\Scripts" >> $GITHUB_PATH
 
     - name: Install dependencies
       run: |
