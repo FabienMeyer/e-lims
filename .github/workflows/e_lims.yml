@@ -1,4 +1,4 @@
-name: E-lims Utils CI
+name: E-lims CI
 
 on:
   push:
@@ -44,7 +44,7 @@ jobs:
     - name: Checkout repository
       uses: actions/checkout@v4
       with:
-        path: 'libs/e-lims-utils'
+        path: ''
 
     - name: Set up Python
       uses: actions/setup-python@v2.3.1
