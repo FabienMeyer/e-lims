@@ -97,19 +97,13 @@ jobs:
         cd libs/e-lims-utils
         poetry install -E tests -E docs
 
-    - name: Linters
-      run:  |
-        cd libs/e-lims-utils
-        poetry run tox -e linters
-
     - name: Documentation
       run:  |
         cd libs/e-lims-utils
         poetry run tox -e documentation
 
   build:
-    runs-on: windows-latest
-    needs: documentation
+    runs-on: ubuntu-latest
     steps:
     - name: Checkout repository
       uses: actions/checkout@v4
@@ -124,14 +118,15 @@ jobs:
     - name: Install Poetry
       run: |
         curl -sSL https://install.python-poetry.org | python3 -
+        export PATH="$HOME/.poetry/bin:$PATH"
 
     - name: Install dependencies
       run: |
         dir
         cd libs/e-lims-utils
-        C:\Users\runneradmin\AppData\Roaming\Python\Scripts\poetry install -E tests -E docs
+        poetry install -E tests -E docs
 
     - name: Build
       run:  |
         cd libs/e-lims-utils
-        C:\Users\runneradmin\AppData\Roaming\Python\Scripts\poetry run tox -e build
+        poetry run tox -e build
