@@ -1,20 +1,14 @@
-name: E-lims CI
+name: E-lims Utils CI
 
 on:
   push:
-    paths-ignore:
-      - 'libs/e-lims-utils/**'
+    branches: [main]
   pull_request:
-    paths-ignore:
-      - 'libs/e-lims-utils/**'
+    branches: [main]
 
 jobs:
-  build:
+  linters:
     runs-on: ubuntu-latest
-
-    strategy:
-      matrix:
-        os: [ubuntu-latest]
 
     steps:
     - name: Checkout repository
@@ -33,13 +27,74 @@ jobs:
         export PATH="$HOME/.poetry/bin:$PATH"
 
     - name: Install dependencies
-      run: |
-        poetry install -E tests -E docs
+      run: poetry install -E tests -E docs
 
     - name: Linters
-      run:  |
-        poetry run tox -e linters
+      run: poetry run tox -e linters
 
-    - name: Documentation code
-      run:  |
-        poetry run tox -e documentation
+  tests:
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        os: [ubuntu-latest]
+        python: ['3.10', '3.11', '3.12']
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+      with:
+        path: 'libs/e-lims-utils'
+
+    - name: Set up Python
+      uses: actions/setup-python@v2.3.1
+      with:
+        python-version: ${{ matrix.python }}
+
+    - name: Install Poetry
+      run: |
+        curl -sSL https://install.python-poetry.org | python3 -
+        export PATH="$HOME/.poetry/bin:$PATH"
+
+    - name: Install dependencies
+      run: poetry install -E tests -E docs
+
+    - name: Python 3.10 Tests 
+      run:  poetry run tox -e py310
+      if: matrix.python == '3.10'
+  
+    - name: Python 3.11 Tests 
+      run:  poetry run tox -e py311
+      if: matrix.python == '3.11'
+
+    - name: Python 3.12 Tests 
+      run:  poetry run tox -e py312
+      if: matrix.python == '3.12'
+
+  documentation:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+      with:
+        path: ''
+
+    - name: Set up Python
+      uses: actions/setup-python@v2.3.1
+      with:
+        python-version: '3.10'
+
+    - name: Install Poetry
+      run: |
+        curl -sSL https://install.python-poetry.org | python3 -
+        export PATH="$HOME/.poetry/bin:$PATH"
+
+    - name: Install dependencies
+      run: poetry install -E tests -E docs
+
+    - name: Linters
+      run: poetry run tox -e linters
+
+    - name: Documentation
+      run: poetry run tox -e documentation
