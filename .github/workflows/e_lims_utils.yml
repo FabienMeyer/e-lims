@@ -123,14 +123,13 @@ jobs:
     - name: Install Poetry
       run: |
         curl -sSL https://install.python-poetry.org | python3 -
-        $env:PATH = "$env:HOME/.poetry/bin;$env:PATH"
 
     - name: Install dependencies
       run: |
         cd libs/e-lims-utils
-        poetry install -E tests -E docs
+        C:\Users\runneradmin\AppData\Roaming\Python\Scripts\poetry install -E tests -E docs
 
     - name: Build
       run:  |
         cd libs/e-lims-utils
-        poetry run tox -e build
+        C:\Users\runneradmin\AppData\Roaming\Python\Scripts\poetry run tox -e build
