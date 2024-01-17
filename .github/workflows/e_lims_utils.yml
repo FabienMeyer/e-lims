@@ -136,7 +136,7 @@ jobs:
     - name: Install Poetry
       run: |
         curl -sSL https://install.python-poetry.org | python3 -
-        export PATH="$HOME/.poetry/bin:$PATH"
+        echo "::add-path::C:\\Users\\runneradmin\\AppData\\Roaming\\Python\\Scripts"
 
     - name: Install dependencies
       run: |
