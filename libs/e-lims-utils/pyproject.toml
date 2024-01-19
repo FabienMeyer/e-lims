@@ -7,7 +7,7 @@ authors = ["Fabien Meyer <fabien-meyer@outlook.com>"]
 repository = "https://github.com/FabienMeyer/e-lims/libs/e-lims-utils/"
 documentation = "https://github.com/FabienMeyer/e-lims/blob/main/README.md"
 license = "MIT"
-include = ["src/py.typed"]
+include = ["e_lims_utils/py.typed"]
 keywords = ["e-lims-utils"]
 classifiers = [
     "Development Status :: 1 - Planning",
@@ -66,7 +66,7 @@ build-backend = "poetry.core.masonry.api"
 name = "cz_conventional_commits"
 version = "0.0.0"
 version_files = [
-    "src/__init__.py",
+    "e_lims_utils/__init__.py",
     "pyproject.toml:version"
 ]
 update_changelog_on_bump = true
