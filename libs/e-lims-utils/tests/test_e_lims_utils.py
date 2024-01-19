@@ -2,7 +2,7 @@
 
 import pytest
 
-from e_lims_utils import e_lims_utils
+from src import e_lims_utils
 
 
 @pytest.fixture()

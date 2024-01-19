@@ -4,7 +4,7 @@ import sys
 
 sys.path.insert(0, os.path.abspath(os.path.join("..", "..")))
 
-import e_lims_utils
+import src
 
 # -- General configuration ---------------------------------------------
 extensions = [
@@ -28,10 +28,10 @@ master_doc = "index"
 # General information about the project.
 project = "e-lims-utils"
 package = "e-lims-utils"
-author = e_lims_utils.__author__
+author = src.__author__
 copyright = f"2024, {author}"
-version = e_lims_utils.__version__
-release = e_lims_utils.__version__
+version = src.__version__
+release = src.__version__
 language = "en"
 exclude_patterns = []
 pygments_style = "sphinx"
