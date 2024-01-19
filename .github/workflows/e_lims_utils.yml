@@ -129,4 +129,5 @@ jobs:
     - name: Build
       run:  |
         cd libs/e-lims-utils
+        ls -R libs/e-lims-utils
         poetry run tox -e build
