@@ -130,4 +130,5 @@ jobs:
       run:  |
         cd libs/e-lims-utils
         ls -R libs/e-lims-utils
+        cat libs/e-lims-utils/pyproject.toml
         poetry run tox -e build
