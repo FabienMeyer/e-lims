@@ -134,16 +134,9 @@ jobs:
         cat libs/e-lims-utils/pyproject.toml
         poetry run tox -e build
 
-    - name: Upload build artifacts
-      uses: actions/upload-artifact@v2
-      with:
-        name: build
-        path: libs/e-lims-utils/dist
-
-    - name: Deploy on PyPi
+    - name: Publish on PyPi
       # if: startsWith(github.ref, 'refs/tags/')
       run: |
         cd libs/e-lims-utils
-        poetry config pypi-token.pypi ${{ secrets.PYPI }}
-        poetry build
-        poetry publish --build
+        poetry config http-basic.pypi  secrets.PYPI_USERNAME secrets.PYPI_PASSWORD
+        poetry publish
