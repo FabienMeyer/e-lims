@@ -1,13 +1,13 @@
 [tool.poetry]
-name = "elims"
+name = "e-lims"
 version = "0.0.0"
-description = "elims."
+description = "e-lims."
 readme = "README.md"
 authors = ["Fabien Meyer <fabien-meyer@outlook.com>"]
 repository = "https://github.com/FabienMeyer/e-lims"
 documentation = "https://github.com/FabienMeyer/e-lims/blob/main/README.md"
 license = "MIT"
-include = ["elims/py.typed"]
+include = ["src/py.typed"]
 
 [tool.poetry.dependencies]
 python = ">=3.10,<4.0"
