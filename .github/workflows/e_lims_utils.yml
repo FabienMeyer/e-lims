@@ -130,8 +130,6 @@ jobs:
     - name: Build
       run:  |
         cd libs/e-lims-utils
-        ls -R libs/e-lims-utils
-        cat libs/e-lims-utils/pyproject.toml
         poetry run tox -e build
 
     - name: Publish on PyPi
@@ -139,4 +137,4 @@ jobs:
       run: |
         cd libs/e-lims-utils
         poetry config pypi-token.pypi ${{ secrets.PYPI_API_TOKEN }}
-        poetry publish
+        poetry publish --build
