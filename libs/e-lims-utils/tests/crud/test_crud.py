@@ -1,7 +1,7 @@
 """e-lims-utils tests crud."""
 from __future__ import annotations
 
-from typing import Generator, Sequence
+from typing import Generator
 
 import pytest
 from sqlalchemy import inspect
@@ -65,11 +65,11 @@ def fx_crud_instance(
 
 
 @pytest.fixture()
-def fx_data_to_write_and_check(fx_model: BaseSqlModel) -> tuple[Sequence[BaseSqlModel], Sequence[BaseSqlModel]]:
+def fx_data_to_write_and_check(fx_model: BaseSqlModel) -> tuple[list[BaseSqlModel], list[BaseSqlModel]]:
     """Return the data to write and the data to check.
 
     Args:
-        fx_model: tuple[Sequence[BaseSqlModel], Sequence[BaseSqlModel]]: The SQLModel on which to perform CRUD operations.
+        fx_model: tuple[list[BaseSqlModel], list[BaseSqlModel]]: The SQLModel on which to perform CRUD operations.
 
     Returns:
         Tuple[List[Model], List[Model]]: The data to write and the data to check.
@@ -99,27 +99,27 @@ def test_drop_table(fx_crud_instance: Crud) -> None:
     assert fx_crud_instance.model.__tablename__ not in inspect(fx_crud_instance.engine).get_table_names()  # nosec B101
 
 
-def test_create(fx_crud_instance: Crud, fx_data_to_write_and_check: tuple[Sequence[BaseSqlModel], Sequence[BaseSqlModel]]) -> None:
+def test_create(fx_crud_instance: Crud, fx_data_to_write_and_check: tuple[list[BaseSqlModel], list[BaseSqlModel]]) -> None:
     """Test the create() method.
 
     Args:
         fx_crud_instance (Crud): The Crud object.
-        fx_data_to_write_and_check: tuple[Sequence[BaseSqlModel], Sequence[BaseSqlModel]]: The SQLModel on which to perform CRUD operations.
+        fx_data_to_write_and_check: tuple[list[BaseSqlModel], list[BaseSqlModel]]: The SQLModel on which to perform CRUD operations.
     """
     data_to_write, _ = fx_data_to_write_and_check
     fx_crud_instance.create(data_to_write[0])
-    data_to_check: Sequence[BaseSqlModel] = fx_crud_instance.read(data_to_write[0].uid)
+    data_to_check: list[BaseSqlModel] = fx_crud_instance.read(data_to_write[0].uid)
     assert data_to_check.uid == data_to_write[0].uid  # nosec B101
     assert data_to_check.name == data_to_write[0].name  # nosec B101
     assert data_to_check.age == data_to_write[0].age  # nosec B101
 
 
-def test_read(fx_crud_instance: Crud, fx_data_to_write_and_check: tuple[Sequence[BaseSqlModel], Sequence[BaseSqlModel]]) -> None:
+def test_read(fx_crud_instance: Crud, fx_data_to_write_and_check: tuple[list[BaseSqlModel], list[BaseSqlModel]]) -> None:
     """Test the read() method.
 
     Args:
         fx_crud_instance (Crud): The Crud object.
-        fx_data_to_write_and_check: tuple[Sequence[BaseSqlModel], Sequence[BaseSqlModel]]: The SQLModel on which to perform CRUD operations.
+        fx_data_to_write_and_check: tuple[list[BaseSqlModel], list[BaseSqlModel]]: The SQLModel on which to perform CRUD operations.
     """
     data_to_write, data_to_check = fx_data_to_write_and_check
     fx_crud_instance.create(data_to_write[0])
@@ -129,12 +129,12 @@ def test_read(fx_crud_instance: Crud, fx_data_to_write_and_check: tuple[Sequence
     assert read_data.age == data_to_check[0].age  # nosec B101
 
 
-def test_creates(fx_crud_instance: Crud, fx_data_to_write_and_check: tuple[Sequence[BaseSqlModel], Sequence[BaseSqlModel]]) -> None:
+def test_creates(fx_crud_instance: Crud, fx_data_to_write_and_check: tuple[list[BaseSqlModel], list[BaseSqlModel]]) -> None:
     """Test the creates() method.
 
     Args:
         fx_crud_instance (Crud): The Crud object.
-        fx_data_to_write_and_check: tuple[Sequence[BaseSqlModel], Sequence[BaseSqlModel]]: The SQLModel on which to perform CRUD operations.
+        fx_data_to_write_and_check: tuple[list[BaseSqlModel], list[BaseSqlModel]]: The SQLModel on which to perform CRUD operations.
     """
     data_to_write, _ = fx_data_to_write_and_check
     fx_crud_instance.creates(data_to_write)
@@ -146,12 +146,12 @@ def test_creates(fx_crud_instance: Crud, fx_data_to_write_and_check: tuple[Seque
         assert data.age == data_to_check[index].age  # nosec B101
 
 
-def test_reads(fx_crud_instance: Crud, fx_data_to_write_and_check: tuple[Sequence[BaseSqlModel], Sequence[BaseSqlModel]]) -> None:
+def test_reads(fx_crud_instance: Crud, fx_data_to_write_and_check: tuple[list[BaseSqlModel], list[BaseSqlModel]]) -> None:
     """Test the reads() method.
 
     Args:
         fx_crud_instance (Crud): The Crud object.
-        fx_data_to_write_and_check: tuple[Sequence[BaseSqlModel], Sequence[BaseSqlModel]]: The SQLModel on which to perform CRUD operations.
+        fx_data_to_write_and_check: tuple[list[BaseSqlModel], list[BaseSqlModel]]: The SQLModel on which to perform CRUD operations.
     """
     data_to_write, data_to_check = fx_data_to_write_and_check
     fx_crud_instance.creates(data_to_write)
@@ -163,12 +163,12 @@ def test_reads(fx_crud_instance: Crud, fx_data_to_write_and_check: tuple[Sequenc
         assert data.age == data_to_check[index].age  # nosec B101
 
 
-def test_read_by_ids(fx_crud_instance: Crud, fx_data_to_write_and_check: tuple[Sequence[BaseSqlModel], Sequence[BaseSqlModel]]) -> None:
+def test_read_by_ids(fx_crud_instance: Crud, fx_data_to_write_and_check: tuple[list[BaseSqlModel], list[BaseSqlModel]]) -> None:
     """Test the read_by_ids() method.
 
     Args:
         fx_crud_instance (Crud): The Crud object.
-        fx_data_to_write_and_check: tuple[Sequence[BaseSqlModel], Sequence[BaseSqlModel]]: The SQLModel on which to perform CRUD operations.
+        fx_data_to_write_and_check: tuple[list[BaseSqlModel], list[BaseSqlModel]]: The SQLModel on which to perform CRUD operations.
     """
     data_to_write, data_to_check = fx_data_to_write_and_check
     fx_crud_instance.creates(data_to_write)
@@ -179,12 +179,12 @@ def test_read_by_ids(fx_crud_instance: Crud, fx_data_to_write_and_check: tuple[S
         assert data.age == data_to_check[index].age  # nosec B101
 
 
-def test_read_by_field(fx_crud_instance: Crud, fx_data_to_write_and_check: tuple[Sequence[BaseSqlModel], Sequence[BaseSqlModel]]) -> None:
+def test_read_by_field(fx_crud_instance: Crud, fx_data_to_write_and_check: tuple[list[BaseSqlModel], list[BaseSqlModel]]) -> None:
     """Test the read_by_field() method.
 
     Args:
         fx_crud_instance (Crud): The Crud object.
-        fx_data_to_write_and_check: tuple[Sequence[BaseSqlModel], Sequence[BaseSqlModel]]: The SQLModel on which to perform CRUD operations.
+        fx_data_to_write_and_check: tuple[list[BaseSqlModel], list[BaseSqlModel]]: The SQLModel on which to perform CRUD operations.
     """
     data_to_write, data_to_check = fx_data_to_write_and_check
     fx_crud_instance.creates(data_to_write)
@@ -194,12 +194,12 @@ def test_read_by_field(fx_crud_instance: Crud, fx_data_to_write_and_check: tuple
     assert read_data[0].age == data_to_check[0].age  # nosec B101
 
 
-def test_update(fx_crud_instance: Crud, fx_data_to_write_and_check: tuple[Sequence[BaseSqlModel], Sequence[BaseSqlModel]]) -> None:
+def test_update(fx_crud_instance: Crud, fx_data_to_write_and_check: tuple[list[BaseSqlModel], list[BaseSqlModel]]) -> None:
     """Test the update() method.
 
     Args:
         fx_crud_instance (Crud): The Crud object.
-        fx_data_to_write_and_check: tuple[Sequence[BaseSqlModel], Sequence[BaseSqlModel]]: The SQLModel on which to perform CRUD operations.
+        fx_data_to_write_and_check: tuple[list[BaseSqlModel], list[BaseSqlModel]]: The SQLModel on which to perform CRUD operations.
     """
     updated_age = 26
     data_to_write, data_to_check = fx_data_to_write_and_check
@@ -207,17 +207,17 @@ def test_update(fx_crud_instance: Crud, fx_data_to_write_and_check: tuple[Sequen
     updated_data = data_to_write[0].model_copy(update={"age": updated_age})
     fx_crud_instance.update(updated_data)
     data_to_check = fx_crud_instance.read(updated_data.uid)
-    assert data_to_check.uid == data_to_check[0].uid  # nosec B101
-    assert data_to_check.name == data_to_check[0].name  # nosec B101
+    assert data_to_check.uid == data_to_check.uid  # nosec B101
+    assert data_to_check.name == data_to_check.name  # nosec B101
     assert data_to_check.age == updated_age  # nosec B101
 
 
-def test_delete_by_ids(fx_crud_instance: Crud, fx_data_to_write_and_check: tuple[Sequence[BaseSqlModel], Sequence[BaseSqlModel]]) -> None:
+def test_delete_by_ids(fx_crud_instance: Crud, fx_data_to_write_and_check: tuple[list[BaseSqlModel], list[BaseSqlModel]]) -> None:
     """Test the delete_by_ids() method.
 
     Args:
         fx_crud_instance (Crud): The Crud object.
-        fx_data_to_write_and_check: tuple[Sequence[BaseSqlModel], Sequence[BaseSqlModel]]: The SQLModel on which to perform CRUD operations.
+        fx_data_to_write_and_check: tuple[list[BaseSqlModel], list[BaseSqlModel]]: The SQLModel on which to perform CRUD operations.
     """
     data_to_write, _ = fx_data_to_write_and_check
     fx_crud_instance.creates(data_to_write)
@@ -225,12 +225,12 @@ def test_delete_by_ids(fx_crud_instance: Crud, fx_data_to_write_and_check: tuple
     assert not fx_crud_instance.read_by_ids([1])  # nosec B101
 
 
-def test_delete_by_field(fx_crud_instance: Crud, fx_data_to_write_and_check: tuple[Sequence[BaseSqlModel], Sequence[BaseSqlModel]]) -> None:
+def test_delete_by_field(fx_crud_instance: Crud, fx_data_to_write_and_check: tuple[list[BaseSqlModel], list[BaseSqlModel]]) -> None:
     """Test the delete_by_field() method.
 
     Args:
         fx_crud_instance (Crud): The Crud object.
-        fx_data_to_write_and_check: tuple[Sequence[BaseSqlModel], Sequence[BaseSqlModel]]: The SQLModel on which to perform CRUD operations.
+        fx_data_to_write_and_check: tuple[list[BaseSqlModel], list[BaseSqlModel]]: The SQLModel on which to perform CRUD operations.
     """
     data_to_write, _ = fx_data_to_write_and_check
     fx_crud_instance.creates(data_to_write)

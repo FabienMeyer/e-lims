@@ -115,7 +115,7 @@ class Crud:
             BaseSqlModel: The record read from the database, or None if no record was found.
         """
         with Session(self.engine) as session:
-            return session.exec(select(self.model).where(self.model.uid == primary_key)).first()  # type: ignore
+            return session.exec(select(self.model).where(self.model.uid == primary_key)).first()
 
     def reads(self) -> list[BaseSqlModel]:
         """Reads all records from the database.
