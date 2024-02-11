@@ -15,6 +15,7 @@ extensions = [
     "sphinx.ext.todo",
     "sphinx.ext.coverage",
     "sphinx.ext.viewcode",
+    "m2r",
 ]
 
 templates_path = ["_templates"]

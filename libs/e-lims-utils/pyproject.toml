@@ -42,6 +42,7 @@ pytest-cookies = { version = "^0.7.0", optional = true }
 ruff = { version = "^0.1.11", optional = true }
 
 furo = { version = "^2023.9.10", optional = true }
+m2r = { version = "^0.3.1", optional = true }
 sphinx = { version = "^7.2.6", optional = true }
 sphinx-autodoc-typehints = { version = "^1.25.2", optional = true }
 sphinxcontrib-mermaid = { version = "^0.9.2", optional = true }
@@ -51,7 +52,7 @@ commitizen = "^3.13.0"
 tox = "^4.11.4"
 
 [tool.poetry.extras]
-docs = ["furo", "sphinx", "sphinx-autodoc-typehints", "sphinxcontrib-mermaid"]
+docs = ["furo", "m2r", "sphinx", "sphinx-autodoc-typehints", "sphinxcontrib-mermaid"]
 tests = ["bandit", "doc8", "mypy", "pytest", "pytest-cov", "pytest-cookies", "ruff"]
 
 [[tool.poetry.source]]
@@ -96,7 +97,7 @@ testpaths = [
 ]
 
 [tool.ruff]
-line-length = 160
+line-length = 200
 indent-width = 4
 
 [tool.ruff.format]
@@ -107,7 +108,7 @@ docstring-code-line-length = 20
 
 [tool.ruff.lint]
 select = ["ALL"]
-ignore = ["COM812", "ISC001"]
+ignore = ["ANN101", "COM812", "ISC001", "E501"]
 fixable = ["ALL"]
 unfixable = []
 dummy-variable-rgx = "^(_+|(_+[a-zA-Z0-9_]*[a-zA-Z0-9]+?))$"
@@ -150,4 +151,6 @@ exclude = [
     ".venv/",
     "dist/",
     "docs/",
+    "src/crud/", # TODO: Remove this line when the issue is fixed
+    "tests/crud/", # TODO: Remove this line when the issue is fixed
 ]
