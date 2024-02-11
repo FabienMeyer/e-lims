@@ -13,4 +13,4 @@ def name() -> str:
 
 def test_content(name: str) -> None:
     """Sample pytest test function with the pytest fixture as an argument."""
-    assert "Hello e-lims-utils!" in e_lims_utils.hello(name)
+    assert "Hello e-lims-utils!" in e_lims_utils.hello(name)  # nosec B101
