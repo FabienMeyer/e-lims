@@ -1,6 +1,6 @@
-=======================================
+======================================
 Welcome to e-lims-utils documentation!
-=======================================
+======================================
 
 .. mdinclude:: ../../README.md
 
@@ -8,6 +8,7 @@ Welcome to e-lims-utils documentation!
    :maxdepth: 2
 
    crud/crud
+   files/files
 
 Indices and tables
 ==================
