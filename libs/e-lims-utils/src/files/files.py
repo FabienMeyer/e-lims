@@ -3,12 +3,11 @@ from __future__ import annotations
 
 import dataclasses
 from enum import StrEnum
+from pathlib import Path
 from typing import TYPE_CHECKING
 
 if TYPE_CHECKING:
-    from pathlib import Path
-
-    from src.files.timestamp import Timestamp
+    from .timestamp import Timestamp
 
 
 class FileSuffix(StrEnum):
@@ -76,3 +75,11 @@ class FileProperties:
             Path: a Path object representing the full file path
         """
         return self.path / self.file_name
+
+    def create_file(self) -> None:
+        """Creates a file with the file path.
+
+        Returns:
+            Path: a Path object representing the full file path
+        """
+        Path.open(self.file_path, "w").close()
