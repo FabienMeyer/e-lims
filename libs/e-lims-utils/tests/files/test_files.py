@@ -6,8 +6,8 @@ from pathlib import Path
 
 import pytest
 
-from src.files.files import FileProperties, FileSuffix
-from src.files.timestamp import Timestamp
+from e_lims_utils.files.files import FileProperties, FileSuffix
+from e_lims_utils.files.timestamp import Timestamp
 
 
 @pytest.fixture()

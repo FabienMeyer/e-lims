@@ -7,7 +7,7 @@ import pytest
 from sqlalchemy import inspect
 from sqlmodel import Field
 
-from src.crud.crud import BaseSqlModel, Crud
+from e_lims_utils.crud.crud import BaseSqlModel, Crud
 
 
 @pytest.fixture()

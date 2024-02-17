@@ -5,7 +5,7 @@ from datetime import datetime, timezone
 
 import pytest
 
-from src.files.timestamp import Timestamp
+from e_lims_utils.files.timestamp import Timestamp
 
 
 @pytest.fixture()

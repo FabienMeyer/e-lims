@@ -83,3 +83,14 @@ class FileProperties:
             Path: a Path object representing the full file path
         """
         Path.open(self.file_path, "w").close()
+
+if __name__ == "__main__":
+
+    file = FileProperties(
+        name="test",
+        suffix=FileSuffix.LOG,
+        path=Path.cwd(),
+    )
+    file.create_file()
+    print(file.file_path)
+    file.file_path.unlink()
