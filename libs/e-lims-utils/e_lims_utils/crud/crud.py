@@ -1,7 +1,12 @@
 """Crud class and the BaseSqlModel class."""
 from __future__ import annotations
 
+from typing import TYPE_CHECKING
+
 from sqlmodel import Field, Session, SQLModel, create_engine, select
+
+if TYPE_CHECKING:
+    from e_lims_utils.logger.logger import Logger
 
 
 class BaseSqlModel(SQLModel):
@@ -25,12 +30,13 @@ class Crud:
     It uses SQLAlchemy's Session and Engine to interact with the database.
 
     Attributes:
+        * logger (Logger): The logger used to log messages. It's created from the provided logger class.
         * model (BaseSqlModel): The SQLModel class that represents the table in the database. This is the class that will be used to create, read, update, and delete records.
         * url (str): The URL of the database. This should be a string that SQLAlchemy can recognize as a valid database URL.
         * engine (Engine): The SQLAlchemy Engine used to connect to the database. It's created from the provided database URL.
 
     Methods:
-        * __init__(model: BaseSqlModel, url: str): Initializes the Crud object with a model and a database URL.
+        * __init__(logger: Logger, model: BaseSqlModel, url: str): Initializes the Crud object with a model and a database URL.
         * create(data: BaseSqlModel): Creates a new record in the database.
         * read(primary_key: int): Reads a record from the database by primary key.
         * update(data: BaseSqlModel): Updates a record in the database.
@@ -43,16 +49,18 @@ class Crud:
         * delete_by_field(field: str, value: str): Deletes records from the database by a specific field value.
     """
 
-    def __init__(self, model: BaseSqlModel, url: str) -> None:
+    def __init__(self, logger: Logger, model: BaseSqlModel, url: str) -> None:
         """Initializes the Crud object with a model and a database URL.
 
         This method creates an SQLAlchemy Engine from the provided database URL and assigns it to the 'engine' attribute.
         It also assigns the provided model to the 'model' attribute.
 
         Args:
+            logger (Logger): The logger used to log messages. It's created from the provided logger class.
             model (BaseSqlModel): The SQLModel class that represents the table in the database. This is the class that will be used to create, read, update, and delete records.
             url (str): The URL of the database. This should be a string that SQLAlchemy can recognize as a valid database URL.
         """
+        self.logger = logger
         self.model = model
         self.url = url
         self.engine = create_engine(self.url)
@@ -64,6 +72,7 @@ class Crud:
         The table will have columns that correspond to the fields of the model class.
         """
         self.model.metadata.create_all(self.engine)
+        self.logger.debug("Create table.")
 
     def drop_table(self) -> None:
         """Drops the table for the model in the database.
@@ -72,6 +81,7 @@ class Crud:
         All data in the table will be lost.
         """
         self.model.metadata.drop_all(self.engine)
+        self.logger.debug("Drop table.")
 
     def create(self, data: BaseSqlModel) -> None:
         """Creates a new record in the database.
@@ -87,6 +97,7 @@ class Crud:
             session.add(data)
             session.commit()
             session.refresh(data)
+        self.logger.debug("Create record.")
 
     def creates(self, data: list[BaseSqlModel]) -> None:
         """Creates multiple new records in the database.
@@ -101,6 +112,7 @@ class Crud:
             for record in data:
                 session.add(record)
             session.commit()
+        self.logger.debug("Create records.")
 
     def read(self, primary_key: int) -> BaseSqlModel:
         """Reads a record from the database by primary key.
@@ -115,7 +127,9 @@ class Crud:
             BaseSqlModel: The record read from the database, or None if no record was found.
         """
         with Session(self.engine) as session:
-            return session.exec(select(self.model).where(self.model.uid == primary_key)).first()
+            read = session.exec(select(self.model).where(self.model.uid == primary_key)).first()
+            self.logger.debug("Read record.")
+            return read
 
     def reads(self) -> list[BaseSqlModel]:
         """Reads all records from the database.
@@ -127,7 +141,9 @@ class Crud:
             list[BaseSqlModel]: A list of all records from the database.
         """
         with Session(self.engine) as session:
-            return session.exec(select(self.model)).all()
+            reads = session.exec(select(self.model)).all()
+            self.logger.debug("Read records.")
+            return reads
 
     def read_by_ids(self, primary_keys: list[int]) -> list[BaseSqlModel]:
         """Reads multiple records from the database by their primary keys.
@@ -142,7 +158,9 @@ class Crud:
             list[BaseSqlModel]: A list of the records read from the database.
         """
         with Session(self.engine) as session:
-            return session.exec(select(self.model).filter(self.model.uid.in_(primary_keys))).all()
+            reads = session.exec(select(self.model).filter(self.model.uid.in_(primary_keys))).all()
+            self.logger.debug("Read records by primary_keys.")
+            return reads
 
     def read_by_field(self, field: str, value: str) -> list[BaseSqlModel]:
         """Reads records from the database by a specific field value.
@@ -158,7 +176,9 @@ class Crud:
             list[BaseSqlModel]: A list of the records read from the database.
         """
         with Session(self.engine) as session:
-            return session.exec(select(self.model).filter(getattr(self.model, field) == value)).all()
+            reads = session.exec(select(self.model).filter(getattr(self.model, field) == value)).all()
+            self.logger.debug("Records read by field.")
+            return reads
 
     def update(self, data: BaseSqlModel) -> None:
         """Updates a record in the database.
@@ -177,6 +197,7 @@ class Crud:
             session.add(record)
             session.commit()
             session.refresh(record)
+            self.logger.debug("Update record")
 
     def delete(self, primary_key: int) -> None:
         """Deletes a record from the database by primary key.
@@ -190,6 +211,7 @@ class Crud:
             record = self.read(primary_key)
             session.delete(record)
             session.commit()
+            self.logger.debug("Delete record.")
 
     def delete_by_ids(self, ids: list[int]) -> None:
         """Deletes multiple records from the database by their primary keys.
@@ -204,6 +226,7 @@ class Crud:
             for record in records:
                 session.delete(record)
             session.commit()
+        self.logger.debug("Delete records by primary_keys.")
 
     def delete_by_field(self, field: str, value: str) -> None:
         """Deletes records from the database by a specific field value.
@@ -219,3 +242,4 @@ class Crud:
             for record in records:
                 session.delete(record)
             session.commit()
+        self.logger.debug("Delete records by field.")
