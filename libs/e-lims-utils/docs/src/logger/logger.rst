@@ -1,12 +1,12 @@
 Logger Module
 =============
 
-.. automodule:: src.logger
+.. automodule:: e_lims_utils.logger
 
 LoggerLevel
 -----------
 
-.. autoclass:: src.logger.logger.LoggerLevel
+.. autoclass:: e_lims_utils.logger.logger.LoggerLevel
    :members:
    :undoc-members:
    :show-inheritance:
@@ -14,7 +14,7 @@ LoggerLevel
 Logger
 ------
 
-.. autoclass:: src.logger.logger.Logger
+.. autoclass:: e_lims_utils.logger.logger.Logger
    :members:
    :undoc-members:
    :show-inheritance:

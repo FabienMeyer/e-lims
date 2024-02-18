@@ -12,7 +12,7 @@ if TYPE_CHECKING:
     from e_lims_utils.files.files import FileProperties
 
 
-class LoggerLevel(enum.Enum):
+class LoggerLevel(enum.StrEnum):
     """Enum class representing the different levels of logging.
 
     Attributes:
@@ -35,15 +35,14 @@ class LoggerLevel(enum.Enum):
 
 
 class Logger:
-    """A class for configuring and using a logger with loguru.
+    """A class for configuring and using a logger with loguru."""
 
-    Attributes:
-        _logger (Logger): The loguru logger object.
-    """
-
-    def __init__(self, file: FileProperties, sys_level: LoggerLevel = LoggerLevel.INFO, file_level: LoggerLevel = LoggerLevel.TRACE, backtrace: bool = True, diagnose: bool = True) -> None:
+    def __init__(self, file: FileProperties, level: LoggerLevel, *, backtrace: bool = True, diagnose: bool = True) -> None:
         """Initializes the Logger object after its attributes have been set."""
-        self._file = file
+        self.file = file
+        self.level = level
+        self.backtrace = backtrace
+        self.diagnose = diagnose
         self._logger = _Logger(
             core=_Core(),
             exception=None,
@@ -56,27 +55,14 @@ class Logger:
             patchers=[],
             extra={},
         )
-        self.add(sys.stdout, level=sys_level, backtrace=backtrace, diagnose=diagnose)
-        self.add(str(self._file.file_path), level=file_level, backtrace=backtrace, diagnose=diagnose)
+        self._logger.add(sink=sys.stdout, level=self.level.value, backtrace=self.backtrace, diagnose=self.diagnose)
+        self._logger.add(sink=str(file.file_path), level=self.level.value, backtrace=self.backtrace, diagnose=self.diagnose)
 
-    def add(self, sink: str, level: LoggerLevel, backtrace: bool = True, diagnose: bool = True) -> None:
-        """Add a new sink to the logger.
-
-        Args:
-            sink (str): The sink to add to the logger.
-            level (str): The level of the sink.
-            backtrace (bool): Whether to include backtrace information.
-            diagnose (bool): Whether to include diagnose information.
-        """
-        self._logger.add(sink, level=level.value, backtrace=backtrace, diagnose=diagnose)
-
-    def remove(self, handler_id: int) -> None:
-        """Remove a sink from the logger.
-
-        Args:
-            handler_id (int): The id of the handler to remove.
-        """
-        self._logger.remove(handler_id)
+    def set_file_level(self, level: LoggerLevel) -> None:
+        """Set the file handler level."""
+        if self.level != level.value:
+            self._logger.remove(list(self._logger._core.handlers.keys())[-1])  # noqa: SLF001
+            self._logger.add(sink=str(self.file.file_path), level=level.value, backtrace=self.backtrace, diagnose=self.diagnose)
 
     def trace(self, message: str) -> None:
         """Log a trace message.
