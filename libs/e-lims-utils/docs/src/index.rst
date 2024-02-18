@@ -9,6 +9,7 @@ Welcome to e-lims-utils documentation!
 
    crud/crud
    files/files
+   logger/logger
 
 Indices and tables
 ==================

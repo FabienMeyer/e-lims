@@ -1,12 +1,12 @@
 CRUD Module
 ===========
 
-.. automodule:: src.crud
+.. automodule:: e_lims_utils.crud
 
 BaseSqlModel
 ------------
 
-.. autoclass:: src.crud.crud.BaseSqlModel
+.. autoclass:: e_lims_utils.crud.crud.BaseSqlModel
    :members:
    :undoc-members:
    :show-inheritance:
@@ -14,7 +14,7 @@ BaseSqlModel
 Crud
 ----
 
-.. autoclass:: src.crud.crud.Crud
+.. autoclass:: e_lims_utils.crud.crud.Crud
    :members:
    :undoc-members:
    :show-inheritance:
