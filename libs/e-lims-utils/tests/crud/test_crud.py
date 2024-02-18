@@ -1,6 +1,8 @@
 """e-lims-utils tests crud."""
 from __future__ import annotations
 
+from datetime import datetime, timezone
+from pathlib import Path
 from typing import Generator
 
 import pytest
@@ -8,6 +10,28 @@ from sqlalchemy import inspect
 from sqlmodel import Field
 
 from e_lims_utils.crud.crud import BaseSqlModel, Crud
+from e_lims_utils.files.files import FileProperties, FileSuffix
+from e_lims_utils.files.timestamp import Timestamp
+from e_lims_utils.logger.logger import Logger, LoggerLevel
+
+
+@pytest.fixture()
+def fx_logger() -> Generator[Logger, None, None]:
+    """Pytest fixture for the Logger class.
+
+    Returns:
+        Logger: A Logger object.
+    """
+    file = FileProperties(
+        name="test_crud",
+        suffix=FileSuffix.LOG,
+        path=Path.cwd(),
+        timestamp=Timestamp(datetime.now(tz=timezone.utc)),
+    )
+    logger = Logger(file=file, level=LoggerLevel.TRACE, backtrace=True, diagnose=True)
+    yield logger
+    logger._logger.remove(list(logger._logger._core.handlers.keys())[-1])  # noqa: SLF001
+    file.file_path.unlink()
 
 
 @pytest.fixture()
@@ -46,19 +70,21 @@ def fx_model() -> BaseSqlModel:
 
 @pytest.fixture()
 def fx_crud_instance(
+    fx_logger: Logger,
     fx_model: BaseSqlModel,
     fx_database_url: str,
 ) -> Generator[Crud, None, None]:
     """Return the Crud object.
 
     Args:
+        fx_logger (Logger): A Logger object.
         fx_model (SQLModel): The SQLModel on which to perform CRUD operations.
         fx_database_url (str): The database URL.
 
     Returns:
         Crud: The Crud object.
     """
-    crud = Crud(fx_model, fx_database_url)
+    crud = Crud(fx_logger, fx_model, fx_database_url)
     crud.create_table()
     yield crud
     crud.drop_table()
