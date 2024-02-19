@@ -97,7 +97,7 @@ class Crud:
             session.add(data)
             session.commit()
             session.refresh(data)
-            self.logger.debug("Create record.")
+        self.logger.debug("Create record.")
 
     def creates(self, data: list[BaseSqlModel]) -> None:
         """Creates multiple new records in the database.
@@ -112,7 +112,7 @@ class Crud:
             for record in data:
                 session.add(record)
             session.commit()
-        self.logger.debug("Created records.")
+        self.logger.debug("Create records.")
 
     def read(self, primary_key: int) -> BaseSqlModel:
         """Reads a record from the database by primary key.
@@ -159,7 +159,7 @@ class Crud:
         """
         with Session(self.engine) as session:
             reads = session.exec(select(self.model).filter(self.model.uid.in_(primary_keys))).all()
-            self.logger.debug("Records read by primary_keys.")
+            self.logger.debug("Read records by primary_keys.")
             return reads
 
     def read_by_field(self, field: str, value: str) -> list[BaseSqlModel]:
@@ -198,6 +198,7 @@ class Crud:
             session.commit()
             self.logger.debug("Update record")
             session.refresh(record)
+            self.logger.debug("Update record")
 
     def delete(self, primary_key: int) -> None:
         """Deletes a record from the database by primary key.
@@ -226,7 +227,7 @@ class Crud:
             for record in records:
                 session.delete(record)
             session.commit()
-            self.logger.debug("Delete records by primary_keys.")
+        self.logger.debug("Delete records by primary_keys.")
 
     def delete_by_field(self, field: str, value: str) -> None:
         """Deletes records from the database by a specific field value.
@@ -242,4 +243,4 @@ class Crud:
             for record in records:
                 session.delete(record)
             session.commit()
-            self.logger.debug("Delete records by field.")
+        self.logger.debug("Delete records by field.")
