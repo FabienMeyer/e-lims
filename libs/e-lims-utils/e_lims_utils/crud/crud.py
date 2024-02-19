@@ -196,6 +196,7 @@ class Crud:
                     setattr(record, field, getattr(data, field))
             session.add(record)
             session.commit()
+            self.logger.debug("Update record")
             session.refresh(record)
             self.logger.debug("Update record")
 
