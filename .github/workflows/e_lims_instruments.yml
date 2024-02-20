@@ -3,10 +3,10 @@ name: E-lims Utils CI
 on:
   push:
     paths:
-      - 'libs/e_lims_instruments/**'
+      - 'libs/e-lims-instruments/**'
   pull_request:
     paths:
-      - 'libs/e_lims_instruments/**'
+      - 'libs/e-lims-instruments/**'
 
 jobs:
   linters:
@@ -16,7 +16,7 @@ jobs:
     - name: Checkout repository
       uses: actions/checkout@v4
       with:
-        path: 'libs/e_lims_instruments'
+        path: 'libs/e-lims-instruments'
 
     - name: Set up Python
       uses: actions/setup-python@v2.3.1
@@ -30,12 +30,12 @@ jobs:
 
     - name: Install dependencies
       run: |
-        cd libs/e_lims_instruments
+        cd libs/e-lims-instruments
         poetry install -E tests -E docs
 
     - name: Linters
       run:  |
-        cd libs/e_lims_instruments
+        cd libs/e-lims-instruments
         poetry run tox -e linters
 
   tests:
@@ -51,7 +51,7 @@ jobs:
     - name: Checkout repository
       uses: actions/checkout@v4
       with:
-        path: 'libs/e_lims_instruments'
+        path: 'libs/e-lims-instruments'
 
     - name: Set up Python
       uses: actions/setup-python@v2.3.1
@@ -65,12 +65,12 @@ jobs:
 
     - name: Install dependencies
       run: |
-        cd libs/e_lims_instruments
+        cd libs/e-lims-instruments
         poetry install -E tests -E docs
 
     - name: Python Tests
       run:  |
-        cd libs/e_lims_instruments
+        cd libs/e-lims-instruments
         poetry run tox -e py${{ matrix.python }}
 
   documentation:
@@ -80,7 +80,7 @@ jobs:
     - name: Checkout repository
       uses: actions/checkout@v4
       with:
-        path: 'libs/e_lims_instruments'
+        path: 'libs/e-lims-instruments'
 
     - name: Set up Python
       uses: actions/setup-python@v2.3.1
@@ -94,12 +94,12 @@ jobs:
 
     - name: Install dependencies
       run: |
-        cd libs/e_lims_instruments
+        cd libs/e-lims-instruments
         poetry install -E tests -E docs
 
     - name: Documentation
       run:  |
-        cd libs/e_lims_instruments
+        cd libs/e-lims-instruments
         poetry run tox -e documentation
 
   build:
@@ -109,7 +109,7 @@ jobs:
     - name: Checkout repository
       uses: actions/checkout@v4
       with:
-        path: 'libs/e_lims_instruments'
+        path: 'libs/e-lims-instruments'
 
     - name: Set up Python
       uses: actions/setup-python@v2.3.1
@@ -124,18 +124,18 @@ jobs:
     - name: Install dependencies
       run: |
         dir
-        cd libs/e_lims_instruments
+        cd libs/e-lims-instruments
         poetry install -E tests -E docs
 
     - name: Build
       run:  |
-        cd libs/e_lims_instruments
+        cd libs/e-lims-instruments
         poetry run tox -e build
 
     - name: Publish on PyPi
       if: startsWith(github.ref, 'refs/tags/')
       run: |
-        cd libs/e_lims_instruments
+        cd libs/e-lims-instruments
         poetry config pypi-token.pypi ${{ secrets.PYPI_API_TOKEN }}
         poetry --version
         poetry config --list
