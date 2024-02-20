@@ -1,0 +1,155 @@
+[tool.poetry]
+name = "e_lims_instruments"
+version = "0.0.0"
+description = "e_lims_instruments."
+readme = "README.md"
+authors = ["Fabien Meyer <fabien-meyer@outlook.com>"]
+repository = "https://github.com/FabienMeyer/e-lims/libs/e_lims_instruments/"
+documentation = "https://github.com/FabienMeyer/e-lims/blob/main/README.md"
+license = "MIT"
+include = ["src/py.typed"]
+keywords = ["e_lims_instruments"]
+classifiers = [
+    "Development Status :: 1 - Planning",
+    "Environment :: Console",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3 :: Only",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: Implementation :: CPython",
+    "Programming Language :: Python :: Implementation :: PyPy",
+    "Topic :: Software Development :: Libraries :: Python Modules",
+    "Topic :: Utilities",
+]
+
+[tool.poetry.dependencies]
+python = ">=3.10,<4.0"
+
+e_lims_utils = { path = "../e-lims-utils"}
+typing-extensions = "^4.9.0"
+
+bandit = { version = "^1.7.6", optional = true }
+doc8 = { version = "^1.1.1", optional = true }
+mypy = { version = "^1.8.0", optional = true }
+pytest = { version = "^7.4.4", optional = true }
+pytest-cov = { version = "^4.1.0", optional = true }
+pytest-cookies = { version = "^0.7.0", optional = true }
+ruff = { version = "^0.1.11", optional = true }
+
+furo = { version = "^2023.9.10", optional = true }
+m2r = { version = "^0.3.1", optional = true }
+sphinx = { version = "^7.2.6", optional = true }
+sphinx-autodoc-typehints = { version = "^1.25.2", optional = true }
+sphinxcontrib-mermaid = { version = "^0.9.2", optional = true }
+
+[tool.poetry.group.dev.dependencies]
+commitizen = "^3.13.0"
+tox = "^4.11.4"
+
+[tool.poetry.extras]
+docs = ["furo", "m2r", "sphinx", "sphinx-autodoc-typehints", "sphinxcontrib-mermaid"]
+tests = ["bandit", "doc8", "mypy", "pytest", "pytest-cov", "pytest-cookies", "ruff"]
+
+[[tool.poetry.source]]
+name = "PyPI"
+priority = "primary"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.commitizen]
+name = "cz_conventional_commits"
+version = "0.0.0"
+version_files = [
+    "src/__init__.py",
+    "pyproject.toml:version"
+]
+update_changelog_on_bump = true
+style = [
+    ["qmark", "fg:#ff9d00 bold"],
+    ["question", "bold"],
+    ["answer", "fg:#ff9d00 bold"],
+    ["pointer", "fg:#ff9d00 bold"],
+    ["highlighted", "fg:#ff9d00 bold"],
+    ["selected", "fg:#cc5454"],
+    ["separator", "fg:#cc5454"],
+    ["instruction", ""],
+    ["text", ""],
+    ["disabled", "fg:#858585 italic"]
+]
+
+[tool.pytest.ini_options]
+norecursedirs = [
+    ".git",
+    ".venv",
+    "dist",
+    "docs",
+]
+addopts = "--doctest-modules"
+testpaths = [
+    "tests",
+]
+
+[tool.ruff]
+line-length = 200
+indent-width = 4
+
+[tool.ruff.format]
+quote-style = "double"
+indent-style = "space"
+docstring-code-format = true
+docstring-code-line-length = 20
+
+[tool.ruff.lint]
+select = ["ALL"]
+ignore = ["ANN101", "COM812", "ISC001", "E501"]
+fixable = ["ALL"]
+unfixable = []
+dummy-variable-rgx = "^(_+|(_+[a-zA-Z0-9_]*[a-zA-Z0-9]+?))$"
+
+[tool.ruff.lint.pydocstyle]
+convention = "google"
+
+[tool.ruff.per-file-ignores]
+"tests/**" = [
+    "S101",  # Use of `assert` detected
+]
+"**/__init__.py" = [
+    "F403",  # Wildcard imports
+]
+"docs/**" = [
+    "INP001",  # Requires __init__.py but docs folder is not a package.
+    "E402",    # Module level import not at top of file.
+    "A001",    # Variable `copyright` is shadowing a Python builtin
+    "PTH100",
+    "PTH118",
+]
+
+[tool.mypy]
+check_untyped_defs = true
+disallow_any_generics = true
+disallow_incomplete_defs = true
+disallow_subclassing_any = true
+disallow_untyped_calls = true
+disallow_untyped_decorators = true
+disallow_untyped_defs = true
+no_implicit_optional = true
+no_implicit_reexport = true
+strict_equality = true
+warn_redundant_casts = true
+warn_return_any = true
+warn_unused_configs = true
+warn_unused_ignores = true
+
+exclude = [
+    ".venv/",
+    "dist/",
+    "docs/",
+    "src/crud/", # TODO: Remove this line when the issue is fixed
+    "tests/crud/", # TODO: Remove this line when the issue is fixed
+]
