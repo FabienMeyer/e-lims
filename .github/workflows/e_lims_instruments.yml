@@ -1,4 +1,4 @@
-name: E-lims Utils CI
+name: E-lims Instruments CI
 
 on:
   push:
